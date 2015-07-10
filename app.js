@@ -11,9 +11,11 @@ var bbm = require('blue-button-model');
 
 var istream = fs.createReadStream(__dirname + '/test/fixtures/sample.txt', 'utf-8');
 
-istream.pipe(split()).pipe(new bbcms.CmsFile2Object())
+istream.pipe(split())
+    .pipe(new bbcms.CmsFile2Object())
+    .pipe(new bbcms.IntObjToFhirStream("http://localhost:8080/fhir/base"))
     .on('data', function(data) {
-        console.log(JSON.stringify(data, null, '    '));
+        console.log(JSON.stringify(data, null, '  '));
     })
     .on('finish', function() {
         process.exit();
