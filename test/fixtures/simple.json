@@ -1,0 +1,814 @@
+{
+    "resourceType": "Bundle",
+    "id": "bundle-transaction",
+    "meta": {
+        "lastUpdated": "2014-08-18T01:43:30Z"
+    },
+    "type": "transaction",
+    "base": "http://example.com/base",
+
+    "entry": [{
+            "resource": {
+                "resourceType": "Patient",
+                "text": {
+                    "status": "generated",
+                    "div": "<div>JOHN DOE</div>"
+                },
+                "id": "Patient/123",
+                "name": [{
+                    "use": "official",
+                    "family": [
+                        "DOE"
+                    ],
+                    "given": [
+                        "JOHN"
+                    ]
+                }],
+                "birthDate": "1910-01-01",
+                "address": [{
+                    "use": "home",
+                    "line": [
+                        "123 ANY ROAD"
+                    ],
+                    "city": "ANYTOWN",
+                    "state": "VA",
+                    "postalCode": "00001"
+                }],
+                "telecom": [{
+                    "system": "phone",
+                    "value": "123-456-7890"
+                }, {
+                    "system": "email",
+                    "value": "JOHNDOE@example.com"
+                }],
+                "contact": [{
+                    "relationship": [{
+                        "coding": [{
+                            "system": "http://hl7.org/fhir/patient-contact-relationship",
+                            "code": "family"
+                        }]
+                    }],
+                    "name": {
+                        "family": [
+                            "DOE"
+                        ],
+                        "given": [
+                            "JANE"
+                        ]
+                    },
+
+                    "address": [{
+                        "use": "home",
+                        "line": [
+                            "123 AnyWhere St"
+                        ],
+                        "city": "AnyWhere",
+                        "state": "DC",
+                        "postalCode": "00002-1111"
+                    }],
+                    "telecom": [{
+                        "system": "phone",
+                        "use": "home",
+                        "value": "123-456-7890"
+                    }, {
+                        "system": "phone",
+                        "use": "work",
+                        "value": "000-001-0001"
+                    }, {
+                        "system": "phone",
+                        "use": "mobile",
+                        "value": "000-001-0002"
+                    }, {
+                        "system": "email",
+                        "value": "JANEDOE@example.com"
+                    }]
+                }, {
+                    "relationship": [{
+                        "coding": [{
+                            "system": "http://hl7.org/fhir/patient-contact-relationship",
+                            "code": "family"
+                        }]
+                    }],
+                    "name": {
+                        "family": [
+                            "DOE"
+                        ],
+                        "given": [
+                            "STEVE"
+                        ]
+                    },
+
+                    "address": [{
+                        "use": "home",
+                        "line": [
+                            "123 AnyWhere St"
+                        ],
+                        "city": "AnyWhere",
+                        "state": "VA",
+                        "postalCode": "00001"
+                    }],
+                    "telecom": [{
+                        "system": "phone",
+                        "use": "home",
+                        "value": "123-456-7890"
+                    }, {
+                        "system": "phone",
+                        "use": "work",
+                        "value": "000-001-0001"
+                    }, {
+                        "system": "phone",
+                        "use": "mobile",
+                        "value": "000-001-0002"
+                    }, {
+                        "system": "email",
+                        "value": "STEVEDOE@example.com"
+                    }]
+                }]
+            },
+            "transaction": {
+                "method": "POST",
+                "url": "Patient"
+            }
+        }, {
+            "resource": {
+                "resourceType": "Condition",
+                "text": {
+                    "status": "generated",
+                    "div": "<div>Arthritis</div>"
+                },
+                "patient": "Patient/123",
+                "code": "arthritis",
+                "clinicalStatus": "unknown", // requred, not defined in source
+                "onsetDateTime": "08/09/2005",
+                "abatementDate": "02/28/2011"
+            }
+        }, {
+            "resource": {
+                "resourceType": "Condition",
+                "text": {
+                    "status": "generated",
+                    "div": "<div>Asthma</div>"
+                },
+                "patient": "Patient/123",
+                "code": "asthma",
+                "clinicalStatus": "unknown", // requred, not defined in source
+                "onsetDateTime": "01/25/2008",
+                "abatementDate": "01/25/2010"
+            }
+        }, {
+            "resource": {
+                "resourceType": "AllergyIntolerance",
+                "patient": "Patient/123",
+                "reporter": "Patient/123",
+                "substance": "Antibotic",
+                "category": "Drugs",
+                "event": [{
+                    "manifestation": "Vomiting",
+                    "severity": "Severe",
+                    "onset": "01/08/1926"
+                }],
+                "status": "confirmed", // aka "Diagnosed: Yes"
+                // Treatment go to Risk Accesment
+                "lastOccurence": "03/13/1955",
+                // Last Treatment Date????
+                "comment": "Erythromycin"
+            }
+        }, {
+            "resource": {
+                "resourceType": "AllergyIntolerance",
+                "patient": "Patient/123",
+                "reporter": "Patient/123",
+                "substance": "Grasses",
+                "category": "Environmental",
+                "event": [{
+                    "manifestation": "Sneezing",
+                    "severity": "Severe",
+                    "onset": "05/13/1973"
+                }],
+                "status": "confirmed", // aka "Diagnosed: Yes"
+                // Treatment go to Risk Accesment
+                "lastOccurence": "07/20/1996"
+                    // Last Treatment Date????
+            }
+        }, {
+            "resource": {
+                "resourceType": "Procedure",
+                "patient": "Patient/123",
+                "status": "completed", // Requred, not defiend in source
+                "type": "surgery", // Requred, not defiend in source
+                "performedDateTime": "1/27/1942",
+                "device": [{
+                    "manipulated": "Device/234" // R!  Device that was changed
+                }]
+            }
+
+        }, {
+            "resourece": {
+                "resourceType": "Device",
+                "text": {
+                    "status": "generated",
+                    "div": "<div>Artificial Eye Lenses</div>"
+                },
+                "id": "Device/234",
+                "type": "implant", // ????
+                "patient": "Patient/123" // Reference loop?
+            }
+        }, {
+            "resourece": {
+                "resourceType": "Immunization",
+                "date": "04/21/2002", // R!  Vaccination administration date
+                "patient": "Patient/123", // R!  Who was immunized?
+                "reported": true, // R!  Is this a self-reported record?
+                "vaccineType": "Varicella/Chicken Pox", // R!  Vaccine product administered
+                "route": "Nasal Spray(mist)", // How vaccine entered body
+                //"location" : "Location/345", // Where did vaccination occur?
+                "vaccinationProtocol": [{
+                        "doseSequence": "1", // R!  What dose number within series?
+                        "description": "Booster 1", // Details of vaccine protocol
+                        "doseTarget": "var", // R!  Disease immunized against
+                        "doseStatus": "count" // R!  Does dose count towards immunity?
+
+                    }]
+                    //"reaction" : { } // Have to create observation for reaction
+            }
+        }, {
+            "resourece": {
+                "resourceType": "Immunization",
+                "date": "01/02/2009", // R!  Vaccination administration date
+                "patient": "Patient/123", // R!  Who was immunized?
+                "reported": true, // R!  Is this a self-reported record?
+                "vaccineType": "typhoid", // R!  Vaccine product administered
+                "route": "Injection" // How vaccine entered body
+            }
+        }, {
+            "resource": {
+                "resourceType": "Observation",
+                "performer": "Patient/123", // Who did the observation
+                "code": "Blood Pressure", // R!  Type of observation (code / type)
+                "valueString": "120/80",
+                "appliesDateTime": "07/22/2011 3:00 PM",
+                "status": "registered" // R!  registered | preliminary | final | amended +
+            }
+        }, {
+            "resource": {
+                "resourceType": "Observation",
+                "performer": "Patient/123", // Who did the observation
+                "code": "Glucose", // R!  Type of observation (code / type)
+                "valueString": "110",
+                "appliesDateTime": "03/20/2012 12:00 PM",
+                "status": "registered" // R!  registered | preliminary | final | amended +
+            }
+        }, {
+            "resource": {
+                "resourceType": "FamilyMemberHistory",
+                "patient": "Patient/123", // R!  Patient history is about
+                "relationship": "Brother", // R!  Relationship to the subject
+                "bornDate": "1/10/1915",
+                "condition": [{ // Condition that the related person had
+                    "type": "Allergy", // R!  Condition suffered by relation
+                    "note": "Antiarrythmia" // Extra information about condition
+                }, { // Condition that the related person had
+                    "type": "Allergy", // R!  Condition suffered by relation
+                    "note": "Antibiotic" // Extra information about condition
+                }, { // Condition that the related person had
+                    "type": "Allergy", // R!  Condition suffered by relation
+                    "note": "Anticonvulsants" // Extra information about condition
+                }, { // Condition that the related person had
+                    "type": "Condition", // R!  Condition suffered by relation
+                    "note": "Allergies" // Extra information about condition
+                }, { // Condition that the related person had
+                    "type": "Condition", // R!  Condition suffered by relation
+                    "note": "Alzheimer's Disease" // Extra information about condition
+                }, { // Condition that the related person had
+                    "type": "Condition", // R!  Condition suffered by relation
+                    "note": "Angina (Heart Pain)" // Extra information about condition
+                }, { // Condition that the related person had
+                    "type": "Condition", // R!  Condition suffered by relation
+                    "note": "Cataracts" // Extra information about condition
+                }]
+            }
+        }, {
+            "resource": {
+                "resourceType": "MedicationStatement",
+                "patient": "Patient/123", // Who did the observation
+                "status": "completed", // R!  in-progress | completed | entered-in-error
+                "informationSource": "Patient/123",
+                "medication": "Medication/345", // What medication was taken?
+                "note": "Orig Drug Entry: Aspirin",
+                "dosage": [{
+                    "rate": "Daily"
+                }]
+            }
+        }, {
+            "resource": {
+                "resourceType": "Medication",
+                "id": "Medication/345",
+                "name": "Aspirin"
+            }
+        }, {
+            "resource": {
+                "resourceType": "Organization",
+                "id": "Organization/567",
+                "name": "MyMedicare.org"
+            }
+        }, {
+            "resource": {
+                "resourceType": "DiagnosticOrder",
+                "id": "DiagnosticOrder/456",
+                "subject": {
+                    "reference": "Patient/123"
+                },
+                "orderer": {
+                    "reference": "Organization/567"
+                },
+                "event": [{
+                    "status": "requested",
+                    "dateTime": "10/1/2011"
+                }],
+                "item": [{
+                    "code": {
+                        "coding": [{
+                            "system": "http://acme.org/tests", //???
+                            "code": "DIABETIS"
+                        }],
+                        "text": "DIABETIS"
+                    }
+                }]
+            }
+        }, {
+            "resource": {
+                "resourceType": "DiagnosticOrder",
+                "id": "DiagnosticOrder/567",
+                "subject": {
+                    "reference": "Patient/123"
+                },
+                "orderer": {
+                    "reference": "Organization/567"
+                },
+                "event": [{
+                    "status": "requested",
+                    "dateTime": "10/1/2011"
+                }],
+                "item": [{
+                    "code": {
+                        "coding": [{
+                            "system": "http://acme.org/tests", //???
+                            "code": "PAP TEST DR"
+                        }],
+                        "text": "PAP TEST DR"
+                    }
+                }]
+            }
+        }, {
+            "resource": {
+                "resourceType": "DiagnosticOrder",
+                "id": "DiagnosticOrder/567",
+                "subject": {
+                    "reference": "Patient/123"
+                },
+                "orderer": {
+                    "reference": "Organization/567"
+                },
+                "event": [{
+                    "status": "requested",
+                    "dateTime": "7/1/2012"
+                }],
+                "item": [{
+                    "code": {
+                        "coding": [{
+                            "system": "http://acme.org/tests", //???
+                            "code": "ABDOMINAL AORTIC ANEURYSM"
+                        }],
+                        "text": "ABDOMINAL AORTIC ANEURYSM"
+                    }
+                }]
+            }
+        }, {
+            "resource": {
+                "resourceType": "DiagnosticOrder",
+                "id": "DiagnosticOrder/567",
+                "subject": {
+                    "reference": "Patient/123"
+                },
+                "orderer": {
+                    "reference": "Organization/567"
+                },
+                "event": [{
+                    "status": "requested",
+                    "dateTime": "1/1/2013"
+                }],
+                "item": [{
+                    "code": {
+                        "coding": [{
+                            "system": "http://acme.org/tests", //???
+                            "code": "ANNUAL WELLNESS VISIT"
+                        }],
+                        "text": "ABDOMINAL AORTIC ANEURYSM"
+                    }
+                }]
+            }
+        }, {
+            "resource": {
+                "resourceType": "DiagnosticOrder",
+                "id": "DiagnosticOrder/567",
+                "subject": {
+                    "reference": "Patient/123"
+                },
+                "orderer": {
+                    "reference": "Organization/567"
+                },
+                "event": [{
+                    "status": "requested",
+                    "dateTime": "10/14/2012"
+                }],
+                "item": [{
+                    "code": {
+                        "coding": [{
+                            "system": "http://acme.org/tests", //???
+                            "code": "DEPRESSION SCREENING"
+                        }],
+                        "text": "DEPRESSION SCREENING"
+                    }
+                }]
+            }
+        }, {
+            "resource": {
+                "resourceType": "Organization",
+                "id": "Organization/000", //???
+                "name": "ANY CARE",
+                "type": {
+                    "coding": [{
+                        "system": "???",
+                        "code": "NHC"
+                    }]
+                },
+                "address": [{
+                    "line": [
+                        "123 Any Rd"
+                    ],
+                    "city": "Anywhere",
+                    "state": "MD",
+                    "zip": "9999"
+                }]
+            }
+        }, {
+            "resource": {
+                "resourceType": "Organization",
+                "id": "Organization/001", //???
+                "name": "ANY HOSPITAL1",
+                "type": {
+                    "coding": [{
+                        "system": "???",
+                        "code": "HOS"
+                    }]
+                },
+                "address": [{
+                    "line": [
+                        "123 Drive"
+                    ],
+                    "city": "Anywhere",
+                    "state": "VA",
+                    "zip": "00001"
+                }]
+            }
+        }, {
+            "resource": {
+                "resourceType": "Practitioner",
+                "id": "Practitioner/678", //???
+                "name": {
+                    "family": ["Doe"],
+                    "given": ["Jane"]
+                },
+                "practitionerRole": [{
+                    "role": "PHY",
+                    "specilality": {
+                        "system": "http://hl7.org/fhir/practitioner-specialty",
+                        "code": "other",
+                        "display": "Other" //???
+                    },
+                    "managingOrganization": {
+                        "reference": "Organization/001",
+                        "display": "ANY HOSPITAL1"
+                    }
+                }]
+            }
+        }, {
+            "resource": {
+                "resourceType": "HealthcareService",
+                "id": "HealthcareService/000", //???
+                "serviceName": "PHARMACY, EAST STREET ANYWHERE, DC 00002",
+                "serviceCategory": {
+                    "coding": [{
+                        "system": "http://hl7.org/fhir/vs/diagnostic-service-sections",
+                        "code": "PHR",
+                        "display": "Pharmacsy"
+                    }]
+                },
+                "telecom": [{
+                    "system": "phone",
+                    "use": "home",
+                    "value": "000-000-0001"
+                }]
+            }
+        }, {
+            "resource": {
+                "resourceType": "Coverage",
+                "issuer": {
+                    "reference": "Organization/567"
+                },
+                "text": {
+                    "status": "generated",
+                    "div": "<div>A Medicare Plan Plus (HMO)<div>"
+                },
+                // Looks like this information has to be local for the system, so use extensions mechanism
+                "extension": [{
+                    "url": "????",
+                    "extnesion": [{
+                        "url": "planName",
+                        "valueString": "A Medicare Plan Plus (HMO)"
+                    }, {
+                        "url": "marketingName",
+                        "valueString": "HealthCare Payer"
+                    }, {
+                        "url": "planType",
+                        "valueCoding": {
+                            "system": "???",
+                            "code": "3",
+                            "display": "Coordinated Care Plan (HMO, PPO, PSO, SNP)"
+                        }
+                    }]
+                }],
+                "plan": "H9999/9999",
+                "period": {
+                    "start": "09/01/2011"
+                },
+                "subscriber": {
+                    "reference": "Patient/123"
+                }
+            }
+        }, {
+            "resource": {
+                "resourceType": "Coverage",
+                "issuer": {
+                    "reference": "Organization/567"
+                },
+                "text": {
+                    "status": "generated",
+                    "div": "<div>A Medicare Rx Plan (PDP)<div>"
+                },
+                // Looks like this information has to be local for the system, so use extensions mechanism
+                // Address is a candidate for extension too, since it may not be the same as organization have
+                "extension": [{
+                    "url": "????",
+                    "extnesion": [{
+                        "url": "planName",
+                        "valueString": "A Medicare Rx Plan (PDP)"
+                    }, {
+                        "url": "marketingName",
+                        "valueString": "Another HealthCare Payer"
+                    }, {
+                        "url": "planType",
+                        "valueCoding": {
+                            "system": "???",
+                            "code": "11",
+                            "display": "Medicare Prescription Drug Plan"
+                        }
+                    }]
+                }],
+                "plan": "S9999/000",
+                "period": {
+                    "start": "01/01/2010"
+                },
+                "subscriber": {
+                    "reference": "Patient/123"
+                }
+            }
+        }, {
+            "resource": {
+                "resourceType": "Coverage",
+                "issuer": {
+                    "reference": "Organization/567" //???
+                },
+                "text": {
+                    "status": "generated",
+                    "div": "<div>STATE HEALTH BENEFITS PROGRAM<div>"
+                },
+                "plan": "STATE HEALTH BENEFITS PROGRAM",
+                "period": {
+                    "start": "01/01/2011",
+                    "end": "12/31/2011"
+                },
+                "subscriber": {
+                    "reference": "Patient/123"
+                }
+            }
+        }, {
+            "resource": {
+                "resourceType": "Coverage",
+                //It's probably no reason to create a separate organization, so put it in contained resource
+                "contained": [{
+                    "resource": {
+                        "resourceType": "Organization",
+                        "id": "Organization/999",
+                        "name": "Insurer1",
+                        "address": [{
+                            "line": [
+                                "PO BOX 0000"
+                            ],
+                            "city": "Anytown",
+                            "state": "CO",
+                            "zip": "00002-0000"
+                        }]
+                    }
+                }],
+                "issuer": {
+                    "reference": "Organization/999"
+                },
+                "text": {
+                    "status": "generated",
+                    "div": "<div>End stage Renal Disease (ESRD)<div>"
+                },
+                "type": {
+                    "system": "???", //TBD
+                    "code": "???", //TBD
+                    "display": "End stage Renal Disease (ESRD)"
+                },
+                "group": "1234567890",
+                "period": {
+                    "start": "01/01/2011",
+                    "end": "09/30/2011"
+                },
+                "subscriber": {
+                    "reference": "Patient/123"
+                }
+            }
+        }, {
+            "resource": {
+                "resourceType": "Coverage",
+                //It's probably no reason to create a separate organization, so put it in contained resource
+                "contained": [{
+                    "resource": {
+                        "resourceType": "Organization",
+                        "id": "Organization/998",
+                        "name": "Insurer2",
+                        "address": [{
+                            "line": [
+                                "0000 Any ROAD"
+                            ],
+                            "city": "ANYWHERE",
+                            "state": "VA",
+                            "zip": "00000-0000"
+                        }]
+                    }
+                }],
+                "issuer": {
+                    "reference": "Organization/998"
+                },
+                "text": {
+                    "status": "generated",
+                    "div": "<div>End stage Renal Disease (ESRD)<div>"
+                },
+                "type": {
+                    "system": "???", //TBD
+                    "code": "???", //TBD
+                    "display": "End stage Renal Disease (ESRD)"
+                },
+                "group": "12345678901",
+                "period": {
+                    "start": "01/01/2010",
+                    "end": "12/31/2010"
+                },
+                "subscriber": {
+                    "reference": "Patient/123"
+                }
+            }
+        }, {
+            "resource": {
+                "resourceType": "Coverage",
+                //It's probably no reason to create a separate organization, so put it in contained resource
+                "contained": [{
+                    "resource": {
+                        "resourceType": "Organization",
+                        "id": "Organization/998",
+                        "name": "Insurer2",
+                        "address": [{
+                            "line": [
+                                "00 Address STREET"
+                            ],
+                            "city": "ANYWHERE",
+                            "state": "PA",
+                            "zip": "00000"
+                        }]
+                    }
+                }],
+                "issuer": {
+                    "reference": "Organization/998"
+                },
+                "text": {
+                    "status": "generated",
+                    "div": "<div><div>"
+                },
+                "group": "00001",
+                "period": {
+                    "start": "10/01/1984",
+                    "end": "11/30/2008"
+                },
+                "subscriber": {
+                    "reference": "Patient/123"
+                }
+            }
+        }, { //TDL
+            "resource": {
+                "resourceType": "PaymentReconciliation",
+                "organization": "Organization/567", // Move to Provenance?
+                "identifier": {
+                    "value": "1234567890000"
+                },
+                "period": {
+                    "start":"10/18/2012"
+                },
+                "total": "60.00"
+            }
+        }, { 
+            "resource": {
+                "resourceType": "Claim",
+                "id": "Claim/001",
+                "type": "institutional", // R!  institutional | oral | pharmacy | professional | vision
+                "contained": [{
+                   "resource" : {
+                       "resourceType": "Practitioner",
+                       "id": "p001",
+                       "identifier": [
+                           {
+                               "system": "???", // Rendering Provider No
+                               "value": "0000001"
+                           },{                        
+                               "system": "???", // Rendering Provider NPI
+                               "value": "123456789"
+                           }
+                       ]
+                   } 
+                }],
+                "item" : [ {
+                    "sequence" : "1",
+                     "type" : { // R!  Group or type of product or service
+                         "system": " http://hl7.org/fhir/actinvoicegroupcode",
+                         "code": "service"
+                      }, 
+                      "service" : { // R!  Item Code
+                          "system": "http://hl7.org/fhir/vs/service-uscls",
+                          "code": "98941",
+                          "display": "Chiropractic Manipulative Treatment (Cmt); Spinal, Three To Four Regions" 
+                       }, 
+                       "serviceDate" : "10/18/2012", // Lost service to date
+                       "modifier": [
+                           {
+                               "system" : "???", // TDB 
+                               "code" : "AT",
+                               "display" : "Acute Treatment (This Modifier Should Be Used When Reporting Service 98940, 98941, 98942)"
+                           },
+                           { // Type of Service/Description
+                               "system" : "???", // TBD
+                               "code" : "1",
+                               "display" : "Medical Care"
+                           }
+                       ],
+                       "net": "60.00"
+                }
+                ]
+            },
+            "facility": {
+                "reference":"Location/001"
+            },
+            "provider": {
+                "reference": "#p001"
+            } 
+        }, { 
+            "resource": {
+                "resourceType": "ClaimResponse/001",
+                "id": "Claim/001"
+                //Fill in details
+            }
+        }, { 
+            "resource": {
+                "resourceType": "Location",
+                "id": "Location/001",
+                "physicalType": {
+                    "coding": [
+      {
+        "system": "???", //TBD
+        "code": "11",
+        "display": "Office"
+      },
+      {
+          "system": "http://hl7.org/fhir/location-physical-type",
+          "code": "ro",
+          "display": "Room"
+      }
+    ]
+                }
+            }
+        }
+
+    ]
+}
