@@ -9,8 +9,8 @@ var split = require('split');
 var bbcms = require("../index");
 var bbm = require('blue-button-model');
 
-describe('parser.js', function () {
-    it('CMS parser test', function (done) {
+describe('parser.js', function() {
+    it('CMS parser test', function(done) {
         var istream = fs.createReadStream(__dirname + '/fixtures/sample-extra.txt', 'utf-8');
 
         expect(istream).to.exist;
@@ -26,13 +26,17 @@ describe('parser.js', function () {
             done(e);
         } );*/
 
-         istream.pipe(split()).pipe( new bbcms.CmsFile2Object() )
-         .on('data', function (data) {
-             console.log(JSON.stringify(data, null, '    '));
-         })
-         .on('finish', function () { done();})
-         .on('error', function (error) { done(error);});
-         
+        istream.pipe(split()).pipe(new bbcms.CmsFile2Object())
+            .on('data', function(data) {
+                console.log(JSON.stringify(data, null, '    '));
+            })
+            .on('finish', function() {
+                done();
+            })
+            .on('error', function(error) {
+                done(error);
+            });
+
         /*var valid = bbm.validator.validateDocumentModel(result);
 
         if (!valid) {
@@ -41,27 +45,27 @@ describe('parser.js', function () {
 
         expect(valid).to.be.true;
         */
-        
+
     });
 
-/*    it('Extra line breaks before sections', function (done) {
-        var txtfile = fs.readFileSync(__dirname + '/fixtures/sample-extra.txt', 'utf-8');
+    /*    it('Extra line breaks before sections', function (done) {
+            var txtfile = fs.readFileSync(__dirname + '/fixtures/sample-extra.txt', 'utf-8');
 
-        expect(txtfile).to.exist;
+            expect(txtfile).to.exist;
 
-        //convert string into JSON
-        var result = bbcms.parseText(txtfile);
-        expect(result).to.exist;
+            //convert string into JSON
+            var result = bbcms.parseText(txtfile);
+            expect(result).to.exist;
 
-        var valid = bbm.validator.validateDocumentModel(result);
+            var valid = bbm.validator.validateDocumentModel(result);
 
-        if (!valid) {
-            console.log("Errors: \n", JSON.stringify(bbm.validator.getLastError(), null, 4));
-        }
+            if (!valid) {
+                console.log("Errors: \n", JSON.stringify(bbm.validator.getLastError(), null, 4));
+            }
 
-        expect(valid).to.be.true;
+            expect(valid).to.be.true;
 
-        done();
-    });
-*/
+            done();
+        });
+    */
 });
