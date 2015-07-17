@@ -9,8 +9,8 @@ var split = require('split');
 var bbcms = require("../index");
 var bbm = require('blue-button-model');
 
-describe('parser.js', function() {
-    it('CMS parser test', function(done) {
+describe('parser.js', function () {
+    it('CMS parser test', function (done) {
         var istream = fs.createReadStream(__dirname + '/fixtures/sample.txt', 'ascii');
 
         expect(istream).to.exist;
@@ -27,13 +27,13 @@ describe('parser.js', function() {
         } );*/
 
         istream.pipe(split()).pipe(new bbcms.CmsFile2Object())
-            .on('data', function(data) {
+            .on('data', function (data) {
                 console.log(JSON.stringify(data, null, '    '));
             })
-            .on('finish', function() {
+            .on('finish', function () {
                 done();
             })
-            .on('error', function(error) {
+            .on('error', function (error) {
                 done(error);
             });
 
@@ -48,7 +48,7 @@ describe('parser.js', function() {
 
     });
 
-    it('CMS parser/converter test', function(done) {
+    it('CMS parser/converter test', function (done) {
         var istream = fs.createReadStream(__dirname + '/fixtures/sample.txt', 'ascii');
 
         expect(istream).to.exist;
@@ -65,15 +65,15 @@ describe('parser.js', function() {
         } );*/
 
         istream.pipe(split())
-        .pipe(new bbcms.CmsFile2Object())
-        .pipe(new bbcms.IntObjToFhirStream())
-            .on('data', function(data) {
+            .pipe(new bbcms.CmsFile2Object())
+            .pipe(new bbcms.IntObjToFhirStream())
+            .on('data', function (data) {
                 console.log(JSON.stringify(data, null, '    '));
             })
-            .on('finish', function() {
+            .on('finish', function () {
                 done();
             })
-            .on('error', function(error) {
+            .on('error', function (error) {
                 done(error);
             });
 

@@ -14,12 +14,12 @@ var istream = fs.createReadStream(__dirname + '/test/fixtures/sample.txt', 'utf-
 istream.pipe(split())
     .pipe(new bbcms.CmsFile2Object())
     .pipe(new bbcms.IntObjToFhirStream("http://localhost:8080/fhir/base"))
-    .on('data', function(data) {
+    .on('data', function (data) {
         console.log(JSON.stringify(data, null, '  '));
     })
-    .on('finish', function() {
+    .on('finish', function () {
         process.exit();
     })
-    .on('error', function(error) {
+    .on('error', function (error) {
         process.exit();
     });
