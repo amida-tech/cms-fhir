@@ -157,4 +157,10 @@ getting:
 }
 ```
 
+## Example app
+
 Example app is <a href="https://github.com/amida-tech/cms-fhir/blob/master/app.js">here</a>
+
+## License
+
+Licensed under [Apache 2.0](./LICENSE).
