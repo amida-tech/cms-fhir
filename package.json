@@ -56,13 +56,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/amida-tech/blue-button-cms.git"
+    "url": "https://github.com/amida-tech/cms-fhir.git"
   },
   "keywords": [
     "bluebutton,cms,parsing"
   ],
   "bugs": {
-    "url": "https://github.com/amida-tech/blue-button-cms/issues"
+    "url": "https://github.com/amida-tech/cms-fhir/issues"
   },
-  "homepage": "https://github.com/amida-tech/blue-button-cms"
+  "homepage": "https://github.com/amida-tech/cms-fhir"
 }
