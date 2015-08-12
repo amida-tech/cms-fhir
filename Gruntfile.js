@@ -3,35 +3,13 @@
 var bbcms = require('./index');
 var path = require('path');
 
-var generateChangeDetectionFiles = function (grunt) {
-    var srcs = [
-        'test/fixtures/sample.txt',
-    ];
-    var dest = 'test/fixtures/generated';
-
-    srcs.forEach(function (src) {
-        var content = grunt.file.read(src);
-        var result = bbcms.parseText(content);
-
-        var baseName = path.basename(src, path.extname(src));
-        var destName = baseName + '.json';
-        var destPath = path.join(dest, destName);
-        var destContent = JSON.stringify(result, undefined, 2);
-        grunt.file.write(destPath, destContent);
-    });
-};
-
 module.exports = function (grunt) {
 
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-mocha-test');
-    grunt.loadNpmTasks('grunt-contrib-watch');
-    grunt.loadNpmTasks('grunt-istanbul-coverage');
+    grunt.loadNpmTasks('grunt-mocha-istanbul');
     grunt.loadNpmTasks('grunt-coveralls');
     grunt.loadNpmTasks('grunt-jsbeautifier');
-    grunt.loadNpmTasks('grunt-browserify');
-    grunt.loadNpmTasks('grunt-mocha-phantomjs');
-    grunt.loadNpmTasks('grunt-contrib-connect');
 
     // Project configuration.
     grunt.initConfig({
@@ -61,12 +39,6 @@ module.exports = function (grunt) {
                     'after': true,
                     'done': true
                 }
-            }
-        },
-        watch: {
-            all: {
-                files: ['./lib/*.js', '*.js'],
-                tasks: ['default']
             }
         },
         jsbeautifier: {
@@ -121,56 +93,22 @@ module.exports = function (grunt) {
                 root: '.'
             }
         },
-        browserify: {
-            standalone: {
-                src: ['<%=pkg.main%>'],
-                dest: 'dist/<%=pkg.name%>.standalone.js',
+        mocha_istanbul: {
+            coverage: {
+                src: 'test', // a folder works nicely
                 options: {
-                    standalone: '<%=pkg.name%>'
-                }
-            },
-            require: {
-                src: ['<%=pkg.main%>'],
-                dest: 'dist/<%=pkg.name%>.js',
-                options: {
-                    alias: [__dirname + "/index.js:<%=pkg.name%>"]
-                }
-            },
-            tests: {
-                src: ['test/**/*.js'],
-                dest: 'dist/mocha_tests.js',
-                options: {
-                    transform: ['brfs']
-                }
-            }
-        },
-        connect: {
-            server: {
-                options: {
-                    port: 8000,
-                    hostname: '127.0.0.1'
-                }
-            }
-        },
-        'mocha_phantomjs': {
-            all: {
-                options: {
-                    urls: [
-                        'http://127.0.0.1:8000/dist/mocha_runner.html'
-                    ]
+                    mask: '*.js'
                 }
             }
         }
+
     });
 
     grunt.registerTask('beautify', ['jsbeautifier:beautify']);
     grunt.registerTask('mocha', ['mochaTest']);
-    grunt.registerTask('browser-test', ['browserify:require', 'browserify:tests', 'connect', 'mocha_phantomjs']);
-    grunt.registerTask('gen-change-detect', 'generates files to detect changes in generation', function () {
-        generateChangeDetectionFiles(grunt);
-    });
+    grunt.registerTask('coverage', ['mocha_istanbul:coverage']);
 
-    grunt.registerTask('default', ['beautify', 'jshint', 'mocha', 'browser-test', 'gen-change-detect']);
+    grunt.registerTask('default', ['beautify', 'jshint', 'mocha']);
 
     grunt.registerTask('commit', ['jshint', 'mocha']);
     grunt.registerTask('timestamp', function () {

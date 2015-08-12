@@ -1,6 +1,8 @@
 cms-fhir
 =================
 
+[![Build Status](https://travis-ci.org/amida-tech/cms-fhir.svg)](https://travis-ci.org/amida-tech/cms-fhir) [![Coverage Status](https://coveralls.io/repos/amida-tech/cms-fhir/badge.svg?branch=master&service=github)](https://coveralls.io/github/amida-tech/cms-fhir?branch=master)
+
 Blue Button CMS to FHIR Parser
 
 Generate FHIR JSON data from CMS files. 
