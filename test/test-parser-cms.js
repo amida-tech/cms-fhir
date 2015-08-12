@@ -7,7 +7,6 @@ var fs = require('fs');
 var split = require('split');
 
 var bbcms = require("../index");
-var bbm = require('blue-button-model');
 
 describe('CMS parser/converter test', function () {
     it('sample.txt input file', function (done) {
@@ -36,11 +35,12 @@ describe('CMS parser/converter test', function () {
 
         istream.pipe(split())
             .pipe(new bbcms.CmsFile2Object())
-            .pipe(new bbcms.IntObjToFhirStream())
+            .pipe(new bbcms.IntObjToFhirStream("http://localhost:8080/fhir"))
             .on('data', function (data) {
                 if( (data instanceof Error)) {
                     done( new Error('Error expected'));
                 }
+                fs.writeFile(__dirname + '/fixtures/sample.json',JSON.stringify(data, null, '    '));
                 //console.log(JSON.stringify(data, null, '    '));
             })
             .on('finish', function () {
