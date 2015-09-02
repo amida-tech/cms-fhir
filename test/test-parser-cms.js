@@ -27,7 +27,6 @@ describe('CMS parser/converter test', function () {
 
     });
 
-
     it('CMS parser/converter test', function (done) {
         var istream = fs.createReadStream(__dirname + '/fixtures/sample.txt', 'ascii');
 
@@ -35,12 +34,12 @@ describe('CMS parser/converter test', function () {
 
         istream.pipe(split())
             .pipe(new bbcms.CmsFile2Object())
-            .pipe(new bbcms.IntObjToFhirStream("http://localhost:8080/fhir"))
+            .pipe(new bbcms.IntObjToFhirStream("test", "http://localhost:8080/fhir"))
             .on('data', function (data) {
-                if( (data instanceof Error)) {
-                    done( new Error('Error expected'));
+                if ((data instanceof Error)) {
+                    done(new Error('Error expected'));
                 }
-                fs.writeFile(__dirname + '/fixtures/sample.json',JSON.stringify(data, null, '    '));
+                fs.writeFile(__dirname + '/fixtures/sample.json', JSON.stringify(data, null, '    '));
                 //console.log(JSON.stringify(data, null, '    '));
             })
             .on('finish', function () {
@@ -51,7 +50,7 @@ describe('CMS parser/converter test', function () {
             });
 
     });
-    
+
     it('buggy input', function (done) {
         var istream = fs.createReadStream(__dirname + '/test-parser-cms.js', 'ascii');
 
@@ -61,8 +60,8 @@ describe('CMS parser/converter test', function () {
             .pipe(new bbcms.CmsFile2Object())
             .pipe(new bbcms.IntObjToFhirStream())
             .on('data', function (data) {
-                    if( !(data instanceof Error)) {
-                    done( new Error('Error expected'));
+                if (!(data instanceof Error)) {
+                    done(new Error('Error expected'));
                 }
             })
             .on('finish', function () {
