@@ -13,7 +13,7 @@ var istream = fs.createReadStream(__dirname + '/test/fixtures/sample.txt', 'utf-
 
 istream.pipe(split())
     .pipe(new bbcms.CmsFile2Object())
-    .pipe(new bbcms.IntObjToFhirStream("test","http://localhost:8080/fhir/base"))
+    .pipe(new bbcms.IntObjToFhirStream("test", "http://localhost:8080/fhir/base"))
     .on('data', function (data) {
         console.log(JSON.stringify(data, null, '  '));
     })

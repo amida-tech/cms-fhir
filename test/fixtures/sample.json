@@ -1,0 +1,2691 @@
+{
+    "resourceType": "Bundle",
+    "type": "transaction",
+    "entry": [
+        {
+            "resource": {
+                "resourceType": "Patient",
+                "id": "Patient/test",
+                "name": [
+                    {
+                        "use": "usual",
+                        "text": "JOHN DOE"
+                    }
+                ],
+                "birthDate": "1910-01-01",
+                "address": [
+                    {
+                        "line": [
+                            "123 ANY ROAD",
+                            ""
+                        ],
+                        "city": "ANYTOWN",
+                        "state": "VA",
+                        "postalCode": "00001"
+                    }
+                ],
+                "telecom": [
+                    {
+                        "system": "phone",
+                        "value": "123-456-7890"
+                    },
+                    {
+                        "system": "email",
+                        "value": "JOHNDOE@example.com"
+                    }
+                ],
+                "contact": [
+                    {
+                        "name": [
+                            {
+                                "use": "usual",
+                                "text": "JANE DOE"
+                            }
+                        ],
+                        "address": [
+                            {
+                                "use": "Home",
+                                "line": [
+                                    "123 AnyWhere St",
+                                    ""
+                                ],
+                                "city": "AnyWhere",
+                                "state": "DC",
+                                "postalCode": "00002-1111"
+                            }
+                        ],
+                        "relationship": [
+                            {
+                                "coding": [
+                                    {
+                                        "system": "http://hl7.org/fhir/ValueSet/patient-contact-relationship",
+                                        "code": "Other"
+                                    }
+                                ],
+                                "text": "Other"
+                            }
+                        ],
+                        "telecom": [
+                            {
+                                "use": "home",
+                                "system": "phone",
+                                "value": "123-456-7890"
+                            },
+                            {
+                                "use": "work",
+                                "system": "phone",
+                                "value": "000-001-0001"
+                            },
+                            {
+                                "use": "mobile",
+                                "system": "phone",
+                                "value": "000-001-0002"
+                            },
+                            {
+                                "system": "email",
+                                "value": "JANEDOE@example.com"
+                            }
+                        ]
+                    },
+                    {
+                        "name": [
+                            {
+                                "use": "usual",
+                                "text": "STEVE DOE"
+                            }
+                        ],
+                        "address": [
+                            {
+                                "use": "",
+                                "line": [
+                                    "123 AnyWhere Rd",
+                                    ""
+                                ],
+                                "city": "AnyWhere",
+                                "state": "VA",
+                                "postalCode": "00001"
+                            }
+                        ],
+                        "relationship": [
+                            {
+                                "coding": [
+                                    {
+                                        "system": "http://hl7.org/fhir/ValueSet/patient-contact-relationship",
+                                        "code": "Other"
+                                    }
+                                ],
+                                "text": "Other"
+                            }
+                        ],
+                        "telecom": [
+                            {
+                                "use": "home",
+                                "system": "phone",
+                                "value": "123-456-7890"
+                            },
+                            {
+                                "use": "work",
+                                "system": "phone",
+                                "value": "000-001-0001"
+                            },
+                            {
+                                "use": "mobile",
+                                "system": "phone",
+                                "value": "000-001-0002"
+                            },
+                            {
+                                "system": "email",
+                                "value": "STEVEDOE@example.com"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "transaction": {
+                "method": "POST",
+                "url": "Patient"
+            },
+            "base": "http://localhost:8080/fhir"
+        },
+        {
+            "resource": {
+                "resourceType": "Organization",
+                "id": "Organization/0",
+                "name": "MyMedicare.gov"
+            },
+            "transaction": {
+                "method": "POST",
+                "url": "Organization"
+            },
+            "base": "http://localhost:8080/fhir"
+        },
+        {
+            "resource": {
+                "resourceType": "Provenance",
+                "target": {
+                    "reference": "Patient/test"
+                },
+                "agent": [
+                    {
+                        "role": {
+                            "code": "enterer",
+                            "system": "http://hl7.org/fhir/ValueSet/provenance-agent-role",
+                            "display": "Enterer"
+                        },
+                        "type": {
+                            "system": "http://hl7.org/fhir/provenance-participant-type",
+                            "code": "organization"
+                        },
+                        "referenceReference": {
+                            "reference": "Organization/0"
+                        }
+                    }
+                ]
+            },
+            "transaction": {
+                "method": "POST",
+                "url": "Provenance"
+            },
+            "base": "http://localhost:8080/fhir"
+        },
+        {
+            "resource": {
+                "resourceType": "Condition",
+                "patient": {
+                    "reference": "Patient/test"
+                },
+                "code": {
+                    "text": "Arthritis"
+                },
+                "onsetDateTime": "2005-08-09",
+                "abatementDate": "2011-02-28"
+            },
+            "transaction": {
+                "method": "POST",
+                "url": "Condition"
+            },
+            "base": "http://localhost:8080/fhir"
+        },
+        {
+            "resource": {
+                "resourceType": "Condition",
+                "patient": {
+                    "reference": "Patient/test"
+                },
+                "code": {
+                    "text": "Asthma"
+                },
+                "onsetDateTime": "2008-01-25",
+                "abatementDate": "2010-01-25"
+            },
+            "transaction": {
+                "method": "POST",
+                "url": "Condition"
+            },
+            "base": "http://localhost:8080/fhir"
+        },
+        {
+            "resource": {
+                "resourceType": "AllergyIntolerance",
+                "patient": {
+                    "reference": "Patient/test"
+                },
+                "recorder": {
+                    "reference": "Patient/test"
+                },
+                "substance": {
+                    "text": "Antibotic"
+                },
+                "category": "Drugs",
+                "event": [
+                    {
+                        "manifestation": [
+                            {
+                                "text": "Vomiting"
+                            }
+                        ],
+                        "severity": "Severe",
+                        "onset": "1926-01-08"
+                    }
+                ],
+                "status": "Yes",
+                "lastOccurence": "1955-03-13",
+                "comment": "Erythromycin"
+            },
+            "transaction": {
+                "method": "POST",
+                "url": "AllergyIntolerance"
+            },
+            "base": "http://localhost:8080/fhir"
+        },
+        {
+            "resource": {
+                "resourceType": "RiskAssessment",
+                "subject": {
+                    "reference": "Patient/test"
+                },
+                "mitigation": "Allergy Shots"
+            },
+            "transaction": {
+                "method": "POST",
+                "url": "RiskAssessment"
+            },
+            "base": "http://localhost:8080/fhir"
+        },
+        {
+            "resource": {
+                "resourceType": "AllergyIntolerance",
+                "patient": {
+                    "reference": "Patient/test"
+                },
+                "recorder": {
+                    "reference": "Patient/test"
+                },
+                "substance": {
+                    "text": "Grasses"
+                },
+                "category": "Environmental",
+                "event": [
+                    {
+                        "manifestation": [
+                            {
+                                "text": "Sneezing"
+                            }
+                        ],
+                        "severity": "Severe",
+                        "onset": "1973-05-13"
+                    }
+                ],
+                "status": "Yes",
+                "lastOccurence": "1996-07-20",
+                "comment": ""
+            },
+            "transaction": {
+                "method": "POST",
+                "url": "AllergyIntolerance"
+            },
+            "base": "http://localhost:8080/fhir"
+        },
+        {
+            "resource": {
+                "resourceType": "RiskAssessment",
+                "subject": {
+                    "reference": "Patient/test"
+                },
+                "mitigation": "Avoidance"
+            },
+            "transaction": {
+                "method": "POST",
+                "url": "RiskAssessment"
+            },
+            "base": "http://localhost:8080/fhir"
+        },
+        {
+            "resource": {
+                "resourceType": "Device",
+                "id": "Device/1",
+                "patient": {
+                    "reference": "Patient/test"
+                },
+                "type": {
+                    "text": "Artificial Eye Lenses"
+                }
+            },
+            "transaction": {
+                "method": "POST",
+                "url": "Device"
+            },
+            "base": "http://localhost:8080/fhir"
+        },
+        {
+            "resource": {
+                "resourceType": "Procedure",
+                "patient": {
+                    "reference": "Patient/test"
+                },
+                "status": "completed",
+                "device": [
+                    {
+                        "action": {
+                            "text": "Artificial Eye Lenses"
+                        },
+                        "manipulated": {
+                            "reference": "Device/1"
+                        }
+                    }
+                ],
+                "performedDateTime": "1942-01-27"
+            },
+            "transaction": {
+                "method": "POST",
+                "url": "Procedure"
+            },
+            "base": "http://localhost:8080/fhir"
+        },
+        {
+            "resource": {
+                "resourceType": "Immunization",
+                "patient": {
+                    "reference": "Patient/test"
+                },
+                "reported": "true",
+                "vaccineType": {
+                    "text": "Varicella/Chicken Pox"
+                },
+                "date": "2002-04-21",
+                "route": {
+                    "text": "Nasal Spray(mist)"
+                },
+                "vaccinationProtocol": [
+                    {
+                        "doseSequence": 1
+                    }
+                ]
+            },
+            "transaction": {
+                "method": "POST",
+                "url": "Immunization"
+            },
+            "base": "http://localhost:8080/fhir"
+        },
+        {
+            "resource": {
+                "resourceType": "Immunization",
+                "patient": {
+                    "reference": "Patient/test"
+                },
+                "reported": "true",
+                "vaccineType": {
+                    "text": "typhoid"
+                },
+                "date": "2009-01-02",
+                "route": {
+                    "text": "Injection"
+                }
+            },
+            "transaction": {
+                "method": "POST",
+                "url": "Immunization"
+            },
+            "base": "http://localhost:8080/fhir"
+        },
+        {
+            "resource": {
+                "resourceType": "Observation",
+                "id": "Observation/5",
+                "subject": {
+                    "reference": "Patient/test"
+                },
+                "status": "registered",
+                "performer": [
+                    {
+                        "reference": "Patient/test"
+                    }
+                ],
+                "code": {
+                    "text": "Glucose Level"
+                },
+                "valueDateTime": "2008-03-21",
+                "valueString": "135, 170, 150, 120",
+                "comments": "Fasting, hour 1, hour 2, hour 3"
+            },
+            "transaction": {
+                "method": "POST",
+                "url": "Observation"
+            },
+            "base": "http://localhost:8080/fhir"
+        },
+        {
+            "resource": {
+                "resourceType": "Practitioner",
+                "name": [
+                    {
+                        "text": "Dr. Smith"
+                    }
+                ],
+                "id": "Practitioner/2"
+            },
+            "transaction": {
+                "method": "POST",
+                "url": "Practitioner"
+            },
+            "base": "http://localhost:8080/fhir"
+        },
+        {
+            "resource": {
+                "resourceType": "DiagnosticOrder",
+                "subject": {
+                    "reference": "Patient/test"
+                },
+                "orderer": {
+                    "reference": "Practitioner/2"
+                },
+                "clinicalNotes": "Ongoing elevated glucose",
+                "id": "DiagnosticOrder/3",
+                "supportingInformation": [
+                    {
+                        "reference": "Observation/5"
+                    }
+                ]
+            },
+            "transaction": {
+                "method": "POST",
+                "url": "DiagnosticOrder"
+            },
+            "base": "http://localhost:8080/fhir"
+        },
+        {
+            "resource": {
+                "resourceType": "Practitioner",
+                "name": [
+                    {
+                        "text": "AnyLab"
+                    }
+                ],
+                "id": "Practitioner/4"
+            },
+            "transaction": {
+                "method": "POST",
+                "url": "Practitioner"
+            },
+            "base": "http://localhost:8080/fhir"
+        },
+        {
+            "resource": {
+                "resourceType": "DiagnosticReport",
+                "subject": {
+                    "reference": "Patient/test"
+                },
+                "issued": "2008-03-21",
+                "performer": {
+                    "reference": "Practitioner/4"
+                },
+                "name": {
+                    "text": "Ongoing elevated glucose"
+                },
+                "conclusion": "135, 170, 150, 120",
+                "status": "final",
+                "requestDetail": {
+                    "reference": "DiagnosticOrder/3"
+                }
+            },
+            "transaction": {
+                "method": "POST",
+                "url": "DiagnosticReport"
+            },
+            "base": "http://localhost:8080/fhir"
+        },
+        {
+            "resource": {
+                "resourceType": "Observation",
+                "subject": {
+                    "reference": "Patient/test"
+                },
+                "status": "registered",
+                "performer": [
+                    {
+                        "reference": "Patient/test"
+                    }
+                ],
+                "code": {
+                    "text": "Blood Pressure"
+                },
+                "appliesDateTime": "2011-07-22T15:00:00",
+                "valueString": "120/80",
+                "comments": ""
+            },
+            "transaction": {
+                "method": "POST",
+                "url": "Observation"
+            },
+            "base": "http://localhost:8080/fhir"
+        },
+        {
+            "resource": {
+                "resourceType": "Observation",
+                "subject": {
+                    "reference": "Patient/test"
+                },
+                "status": "registered",
+                "performer": [
+                    {
+                        "reference": "Patient/test"
+                    }
+                ],
+                "code": {
+                    "text": "Glucose"
+                },
+                "appliesDateTime": "2012-03-20T12:00:00",
+                "valueString": "110",
+                "comments": ""
+            },
+            "transaction": {
+                "method": "POST",
+                "url": "Observation"
+            },
+            "base": "http://localhost:8080/fhir"
+        },
+        {
+            "resource": {
+                "resourceType": "FamilyMemberHistory",
+                "patient": {
+                    "reference": "Patient/test"
+                },
+                "condition": [
+                    {
+                        "type": {
+                            "text": "Allergy"
+                        },
+                        "note": "Antiarrythmia\nAntibiotic\nAnticonvulsants"
+                    },
+                    {
+                        "type": {
+                            "text": "Condition"
+                        },
+                        "note": "Allergies\nAlzheimer's Disease\nAngina (Heart Pain)\nCataracts"
+                    }
+                ],
+                "relationship": {
+                    "text": "Brother"
+                },
+                "bornDate": "1915-01-10"
+            },
+            "transaction": {
+                "method": "POST",
+                "url": "FamilyMemberHistory"
+            },
+            "base": "http://localhost:8080/fhir"
+        },
+        {
+            "resource": {
+                "resourceType": "Medication",
+                "id": "Medication/7",
+                "name": "Aspirin",
+                "code": {
+                    "text": "Aspirin"
+                }
+            },
+            "transaction": {
+                "method": "POST",
+                "url": "Medication"
+            },
+            "base": "http://localhost:8080/fhir"
+        },
+        {
+            "resource": {
+                "resourceType": "MedicationStatement",
+                "patient": {
+                    "reference": "Patient/test"
+                },
+                "informationSource": {
+                    "reference": "Patient/test"
+                },
+                "medication": {
+                    "reference": "Medication/7"
+                },
+                "dosage": [
+                    {
+                        "text": "Dialy"
+                    }
+                ],
+                "note": "Aspirin"
+            },
+            "transaction": {
+                "method": "POST",
+                "url": "MedicationStatement"
+            },
+            "base": "http://localhost:8080/fhir"
+        },
+        {
+            "resource": {
+                "resourceType": "MedicationPrescription",
+                "id": "MedicationPrescription/6",
+                "patient": {
+                    "reference": "Patient/test"
+                },
+                "dispense": {
+                    "expectedSupplyDuration": {
+                        "low": {
+                            "units": "Dialy"
+                        }
+                    }
+                },
+                "medication": {
+                    "reference": "Medication/7"
+                }
+            },
+            "transaction": {
+                "method": "POST",
+                "url": "MedicationPrescription"
+            },
+            "base": "http://localhost:8080/fhir"
+        },
+        {
+            "resource": {
+                "resourceType": "MedicationDispense",
+                "patient": {
+                    "reference": "Patient/test"
+                },
+                "authorizingPrescription": {
+                    "reference": "MedicationPrescription/6"
+                },
+                "substitution": {
+                    "type": {
+                        "text": "Aspirin"
+                    }
+                }
+            },
+            "transaction": {
+                "method": "POST",
+                "url": "MedicationDispense"
+            },
+            "base": "http://localhost:8080/fhir"
+        },
+        {
+            "resource": {
+                "resourceType": "Organization",
+                "id": "Organization/8",
+                "name": "MyMedicare.gov"
+            },
+            "transaction": {
+                "method": "POST",
+                "url": "Organization"
+            },
+            "base": "http://localhost:8080/fhir"
+        },
+        {
+            "resource": {
+                "resourceType": "DiagnosticOrder",
+                "subject": {
+                    "reference": "Patient/test"
+                },
+                "orderer": {
+                    "reference": "Organization/8"
+                },
+                "item": [
+                    {
+                        "code": {
+                            "text": "DIABETES"
+                        }
+                    }
+                ]
+            },
+            "transaction": {
+                "method": "POST",
+                "url": "DiagnosticOrder"
+            },
+            "base": "http://localhost:8080/fhir"
+        },
+        {
+            "resource": {
+                "resourceType": "Organization",
+                "id": "Organization/9",
+                "name": "MyMedicare.gov"
+            },
+            "transaction": {
+                "method": "POST",
+                "url": "Organization"
+            },
+            "base": "http://localhost:8080/fhir"
+        },
+        {
+            "resource": {
+                "resourceType": "DiagnosticOrder",
+                "subject": {
+                    "reference": "Patient/test"
+                },
+                "orderer": {
+                    "reference": "Organization/9"
+                },
+                "item": [
+                    {
+                        "code": {
+                            "text": "PAP TEST DR"
+                        }
+                    }
+                ]
+            },
+            "transaction": {
+                "method": "POST",
+                "url": "DiagnosticOrder"
+            },
+            "base": "http://localhost:8080/fhir"
+        },
+        {
+            "resource": {
+                "resourceType": "Organization",
+                "id": "Organization/10",
+                "name": "MyMedicare.gov"
+            },
+            "transaction": {
+                "method": "POST",
+                "url": "Organization"
+            },
+            "base": "http://localhost:8080/fhir"
+        },
+        {
+            "resource": {
+                "resourceType": "DiagnosticOrder",
+                "subject": {
+                    "reference": "Patient/test"
+                },
+                "orderer": {
+                    "reference": "Organization/10"
+                },
+                "item": [
+                    {
+                        "code": {
+                            "text": "ABDOMINAL AORTIC ANEURYSM"
+                        }
+                    }
+                ]
+            },
+            "transaction": {
+                "method": "POST",
+                "url": "DiagnosticOrder"
+            },
+            "base": "http://localhost:8080/fhir"
+        },
+        {
+            "resource": {
+                "resourceType": "Organization",
+                "id": "Organization/11",
+                "name": "MyMedicare.gov"
+            },
+            "transaction": {
+                "method": "POST",
+                "url": "Organization"
+            },
+            "base": "http://localhost:8080/fhir"
+        },
+        {
+            "resource": {
+                "resourceType": "DiagnosticOrder",
+                "subject": {
+                    "reference": "Patient/test"
+                },
+                "orderer": {
+                    "reference": "Organization/11"
+                },
+                "item": [
+                    {
+                        "code": {
+                            "text": "ANNUAL WELLNESS VISIT"
+                        }
+                    }
+                ]
+            },
+            "transaction": {
+                "method": "POST",
+                "url": "DiagnosticOrder"
+            },
+            "base": "http://localhost:8080/fhir"
+        },
+        {
+            "resource": {
+                "resourceType": "Organization",
+                "id": "Organization/12",
+                "name": "MyMedicare.gov"
+            },
+            "transaction": {
+                "method": "POST",
+                "url": "Organization"
+            },
+            "base": "http://localhost:8080/fhir"
+        },
+        {
+            "resource": {
+                "resourceType": "DiagnosticOrder",
+                "subject": {
+                    "reference": "Patient/test"
+                },
+                "orderer": {
+                    "reference": "Organization/12"
+                },
+                "item": [
+                    {
+                        "code": {
+                            "text": "DEPRESSION SCREENING"
+                        }
+                    }
+                ]
+            },
+            "transaction": {
+                "method": "POST",
+                "url": "DiagnosticOrder"
+            },
+            "base": "http://localhost:8080/fhir"
+        },
+        {
+            "resource": {
+                "resourceType": "Practitioner",
+                "name": [
+                    {
+                        "text": "ANY CARE"
+                    }
+                ],
+                "address": [
+                    {
+                        "text": "123 Any Rd, Anywhere, MD 99999"
+                    }
+                ],
+                "practitionerRole": [
+                    {
+                        "role": {
+                            "text": "NHC"
+                        },
+                        "specialty": [
+                            {
+                                "text": ""
+                            }
+                        ]
+                    }
+                ]
+            },
+            "transaction": {
+                "method": "POST",
+                "url": "Practitioner"
+            },
+            "base": "http://localhost:8080/fhir"
+        },
+        {
+            "resource": {
+                "resourceType": "Practitioner",
+                "name": [
+                    {
+                        "text": "Jane Doe"
+                    }
+                ],
+                "address": [
+                    {
+                        "text": "123 Road, Anywhere, VA 00001"
+                    }
+                ],
+                "practitionerRole": [
+                    {
+                        "role": {
+                            "text": "PHY"
+                        },
+                        "specialty": [
+                            {
+                                "text": "Other"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "transaction": {
+                "method": "POST",
+                "url": "Practitioner"
+            },
+            "base": "http://localhost:8080/fhir"
+        },
+        {
+            "resource": {
+                "resourceType": "Practitioner",
+                "name": [
+                    {
+                        "text": "Jane Doe"
+                    }
+                ],
+                "address": [
+                    {
+                        "text": "123 Road, Anywhere, VA 00001"
+                    }
+                ],
+                "practitionerRole": [
+                    {
+                        "role": {
+                            "text": "PHY"
+                        },
+                        "specialty": [
+                            {
+                                "text": "Other"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "transaction": {
+                "method": "POST",
+                "url": "Practitioner"
+            },
+            "base": "http://localhost:8080/fhir"
+        },
+        {
+            "resource": {
+                "resourceType": "HealthcareService",
+                "serviceName": "PHARMACY, EAST STREET ANYWHERE, DC 00002",
+                "telecom": [
+                    {
+                        "use": "work",
+                        "system": "phone",
+                        "value": "000-000-0001"
+                    }
+                ]
+            },
+            "transaction": {
+                "method": "POST",
+                "url": "HealthcareService"
+            },
+            "base": "http://localhost:8080/fhir"
+        },
+        {
+            "resource": {
+                "resourceType": "HealthcareService",
+                "serviceName": "ANY PHARMACY, WEST STREET ANYWHERE, VA 00001",
+                "telecom": [
+                    {
+                        "use": "work",
+                        "system": "phone",
+                        "value": "000-000-0002"
+                    }
+                ]
+            },
+            "transaction": {
+                "method": "POST",
+                "url": "HealthcareService"
+            },
+            "base": "http://localhost:8080/fhir"
+        },
+        {
+            "resource": {
+                "resourceType": "Organization",
+                "id": "Organization/13",
+                "name": "A Medicare Plan Plus (HMO)",
+                "address": [
+                    {
+                        "text": "123 Any Road Anytown PA 00003"
+                    }
+                ]
+            },
+            "transaction": {
+                "method": "POST",
+                "url": "Organization"
+            },
+            "base": "http://localhost:8080/fhir"
+        },
+        {
+            "resource": {
+                "resourceType": "Coverage",
+                "group": "H9999",
+                "plan": "9999",
+                "period": {
+                    "start": "2011-09-01"
+                },
+                "type": {
+                    "code": "3",
+                    "display": "Coordinated Care Plan (HMO, PPO, PSO, SNP)"
+                },
+                "issuer": {
+                    "reference": "Organization/13"
+                }
+            },
+            "transaction": {
+                "method": "POST",
+                "url": "Coverage"
+            },
+            "base": "http://localhost:8080/fhir"
+        },
+        {
+            "resource": {
+                "resourceType": "Organization",
+                "id": "Organization/14",
+                "name": "A Medicare Rx Plan (PDP)",
+                "address": [
+                    {
+                        "text": "123 Any Road Anytown PA 00003"
+                    }
+                ]
+            },
+            "transaction": {
+                "method": "POST",
+                "url": "Organization"
+            },
+            "base": "http://localhost:8080/fhir"
+        },
+        {
+            "resource": {
+                "resourceType": "Coverage",
+                "group": "S9999",
+                "plan": "000",
+                "period": {
+                    "start": "2010-01-01"
+                },
+                "type": {
+                    "code": "11",
+                    "display": "Medicare Prescription Drug Plan"
+                },
+                "issuer": {
+                    "reference": "Organization/14"
+                }
+            },
+            "transaction": {
+                "method": "POST",
+                "url": "Coverage"
+            },
+            "base": "http://localhost:8080/fhir"
+        },
+        {
+            "resource": {
+                "resourceType": "Coverage",
+                "plan": "STATE HEALTH BENEFITS PROGRAM",
+                "period": {
+                    "start": "2011-01-01",
+                    "end": "2011-12-31"
+                }
+            },
+            "transaction": {
+                "method": "POST",
+                "url": "Coverage"
+            },
+            "base": "http://localhost:8080/fhir"
+        },
+        {
+            "resource": {
+                "resourceType": "Organization",
+                "id": "Organization/15",
+                "name": "Insurer1",
+                "address": [
+                    {
+                        "text": "PO BOX 0000 Anytown, CO 00002-0000"
+                    }
+                ]
+            },
+            "transaction": {
+                "method": "POST",
+                "url": "Organization"
+            },
+            "base": "http://localhost:8080/fhir"
+        },
+        {
+            "resource": {
+                "resourceType": "Coverage",
+                "type": {
+                    "code": "End stage Renal Disease (ESRD)"
+                },
+                "subscriberId": {
+                    "value": "1234567890"
+                },
+                "period": {
+                    "start": "2011-01-01",
+                    "end": "2011-09-30"
+                },
+                "issuer": {
+                    "reference": "Organization/15"
+                }
+            },
+            "transaction": {
+                "method": "POST",
+                "url": "Coverage"
+            },
+            "base": "http://localhost:8080/fhir"
+        },
+        {
+            "resource": {
+                "resourceType": "Organization",
+                "id": "Organization/16",
+                "name": "Insurer2",
+                "address": [
+                    {
+                        "text": "0000 Any ROAD ANYWHERE, VA 00000-0000"
+                    }
+                ]
+            },
+            "transaction": {
+                "method": "POST",
+                "url": "Organization"
+            },
+            "base": "http://localhost:8080/fhir"
+        },
+        {
+            "resource": {
+                "resourceType": "Coverage",
+                "type": {
+                    "code": "End stage Renal Disease (ESRD)"
+                },
+                "subscriberId": {
+                    "value": "12345678901"
+                },
+                "period": {
+                    "start": "2010-01-01",
+                    "end": "2010-12-31"
+                },
+                "issuer": {
+                    "reference": "Organization/16"
+                }
+            },
+            "transaction": {
+                "method": "POST",
+                "url": "Coverage"
+            },
+            "base": "http://localhost:8080/fhir"
+        },
+        {
+            "resource": {
+                "resourceType": "Organization",
+                "id": "Organization/17",
+                "name": "Insurer",
+                "address": [
+                    {
+                        "text": "00 Address STREET ANYWHERE, PA 00000"
+                    }
+                ]
+            },
+            "transaction": {
+                "method": "POST",
+                "url": "Organization"
+            },
+            "base": "http://localhost:8080/fhir"
+        },
+        {
+            "resource": {
+                "resourceType": "Coverage",
+                "subscriberId": {
+                    "value": "00001"
+                },
+                "period": {
+                    "start": "1984-10-01",
+                    "end": "2008-11-30"
+                },
+                "issuer": {
+                    "reference": "Organization/17"
+                }
+            },
+            "transaction": {
+                "method": "POST",
+                "url": "Coverage"
+            },
+            "base": "http://localhost:8080/fhir"
+        },
+        {
+            "resource": {
+                "resourceType": "PaymentReconciliation",
+                "identifier": [
+                    {
+                        "value": "1234567890000"
+                    }
+                ],
+                "detail": [
+                    {
+                        "type": {
+                            "value": "charged"
+                        },
+                        "amount": "60.00",
+                        "code": "USD"
+                    },
+                    {
+                        "type": {
+                            "value": "approved"
+                        },
+                        "amount": "34.00",
+                        "code": "USD"
+                    },
+                    {
+                        "type": {
+                            "value": "providerPaid"
+                        },
+                        "amount": "27.20",
+                        "code": "USD"
+                    },
+                    {
+                        "type": {
+                            "value": "youMayBeBilled"
+                        },
+                        "amount": "6.80",
+                        "code": "USD"
+                    }
+                ],
+                "organization": {
+                    "reference": "Organization/20"
+                },
+                "requestProvider": {
+                    "reference": "Practitioner/19"
+                },
+                "period": {
+                    "start": "2012-10-18"
+                }
+            },
+            "transaction": {
+                "method": "POST",
+                "url": "PaymentReconciliation"
+            },
+            "base": "http://localhost:8080/fhir"
+        },
+        {
+            "resource": {
+                "resourceType": "Organization",
+                "id": "Organization/18",
+                "name": "MyMedicare.gov"
+            },
+            "transaction": {
+                "method": "POST",
+                "url": "Organization"
+            },
+            "base": "http://localhost:8080/fhir"
+        },
+        {
+            "resource": {
+                "resourceType": "Practitioner",
+                "id": "Practitioner/19",
+                "name": [
+                    {
+                        "text": "No Information Available"
+                    }
+                ],
+                "address": [
+                    {
+                        "text": ""
+                    }
+                ]
+            },
+            "transaction": {
+                "method": "POST",
+                "url": "Practitioner"
+            },
+            "base": "http://localhost:8080/fhir"
+        },
+        {
+            "resource": {
+                "resourceType": "Organization",
+                "id": "Organization/20",
+                "name": "PartB"
+            },
+            "transaction": {
+                "method": "POST",
+                "url": "Organization"
+            },
+            "base": "http://localhost:8080/fhir"
+        },
+        {
+            "resource": {
+                "resourceType": "Claim",
+                "identifier": [
+                    {
+                        "value": "1234567890000"
+                    }
+                ],
+                "diagnosis": [
+                    {
+                        "sequence": "1",
+                        "diagnosis": {
+                            "value": "3534"
+                        }
+                    },
+                    {
+                        "sequence": "2",
+                        "diagnosis": {
+                            "value": "7393"
+                        }
+                    },
+                    {
+                        "sequence": "3",
+                        "diagnosis": {
+                            "value": "7392"
+                        }
+                    },
+                    {
+                        "sequence": "4",
+                        "diagnosis": {
+                            "value": "3533"
+                        }
+                    }
+                ],
+                "item": []
+            },
+            "transaction": {
+                "method": "POST",
+                "url": "Claim"
+            },
+            "base": "http://localhost:8080/fhir"
+        },
+        {
+            "resource": {
+                "resourceType": "PaymentReconciliation",
+                "identifier": [
+                    {
+                        "value": "1234567890000"
+                    }
+                ],
+                "detail": [],
+                "period": {
+                    "start": "2012-10-18",
+                    "end": "2012-10-18"
+                }
+            },
+            "transaction": {
+                "method": "POST",
+                "url": "PaymentReconciliation"
+            },
+            "base": "http://localhost:8080/fhir"
+        },
+        {
+            "resource": {
+                "resourceType": "Location",
+                "id": "Location/21",
+                "physicalType": {
+                    "code": "11",
+                    "display": "Office"
+                }
+            },
+            "transaction": {
+                "method": "POST",
+                "url": "Location"
+            },
+            "base": "http://localhost:8080/fhir"
+        },
+        {
+            "resource": {
+                "resourceType": "Practitioner",
+                "identifier": [
+                    {
+                        "value": "123456789"
+                    }
+                ]
+            },
+            "transaction": {
+                "method": "POST",
+                "url": "Practitioner"
+            },
+            "base": "http://localhost:8080/fhir"
+        },
+        {
+            "resource": {
+                "resourceType": "Claim",
+                "identifier": [
+                    {
+                        "value": "1234567890000"
+                    }
+                ],
+                "diagnosis": [
+                    {
+                        "sequence": "1",
+                        "diagnosis": {
+                            "code": "98941",
+                            "display": "Chiropractic Manipulative Treatment (Cmt); Spinal, Three To Four Regions"
+                        }
+                    }
+                ],
+                "item": [
+                    {
+                        "modifier": [
+                            {
+                                "code": "AT",
+                                "display": "Acute Treatment (This Modifier Should Be Used When Reporting Service 98940, 98941, 98942)"
+                            }
+                        ],
+                        "detail": [
+                            {
+                                "sequence": 1,
+                                "quantity": {
+                                    "value": "1"
+                                }
+                            }
+                        ],
+                        "service": {
+                            "code": "1",
+                            "display": "Medical Care"
+                        }
+                    },
+                    {
+                        "modifier": [
+                            {
+                                "display": ""
+                            }
+                        ]
+                    },
+                    {
+                        "modifier": [
+                            {
+                                "display": ""
+                            }
+                        ]
+                    },
+                    {
+                        "modifier": [
+                            {
+                                "display": ""
+                            }
+                        ]
+                    }
+                ],
+                "facility": {
+                    "reference": "Location/21"
+                }
+            },
+            "transaction": {
+                "method": "POST",
+                "url": "Claim"
+            },
+            "base": "http://localhost:8080/fhir"
+        },
+        {
+            "resource": {
+                "resourceType": "ClaimResponse",
+                "item": [
+                    {
+                        "adjudication": [
+                            {
+                                "code": {
+                                    "code": "total"
+                                },
+                                "amount": {
+                                    "value": 60,
+                                    "code": "USD"
+                                }
+                            },
+                            {
+                                "code": {
+                                    "code": "allowedAmount"
+                                },
+                                "amount": {
+                                    "value": 34,
+                                    "code": "USD"
+                                }
+                            },
+                            {
+                                "code": {
+                                    "code": "nonCovered"
+                                },
+                                "amount": {
+                                    "value": 26,
+                                    "code": "USD"
+                                }
+                            }
+                        ]
+                    }
+                ],
+                "request": {}
+            },
+            "transaction": {
+                "method": "POST",
+                "url": "ClaimResponse"
+            },
+            "base": "http://localhost:8080/fhir"
+        },
+        {
+            "resource": {
+                "resourceType": "PaymentReconciliation",
+                "identifier": [
+                    {
+                        "value": "12345678900000VAA"
+                    }
+                ],
+                "detail": [
+                    {
+                        "type": {
+                            "value": "charged"
+                        },
+                        "amount": "504.80",
+                        "code": "USD"
+                    },
+                    {
+                        "type": {
+                            "value": "approved"
+                        },
+                        "amount": "504.80",
+                        "code": "USD"
+                    },
+                    {
+                        "type": {
+                            "value": "providerPaid"
+                        },
+                        "amount": "126.31",
+                        "code": "USD"
+                    },
+                    {
+                        "type": {
+                            "value": "youMayBeBilled"
+                        },
+                        "amount": "38.84",
+                        "code": "USD"
+                    }
+                ],
+                "requestProvider": {
+                    "reference": "Practitioner/22"
+                },
+                "period": {
+                    "start": "2012-09-22"
+                },
+                "organization": {
+                    "reference": "Organization/23"
+                }
+            },
+            "transaction": {
+                "method": "POST",
+                "url": "PaymentReconciliation"
+            },
+            "base": "http://localhost:8080/fhir"
+        },
+        {
+            "resource": {
+                "resourceType": "Practitioner",
+                "id": "Practitioner/22",
+                "name": [
+                    {
+                        "text": "No Information Available"
+                    }
+                ],
+                "address": [
+                    {
+                        "text": ""
+                    }
+                ]
+            },
+            "transaction": {
+                "method": "POST",
+                "url": "Practitioner"
+            },
+            "base": "http://localhost:8080/fhir"
+        },
+        {
+            "resource": {
+                "resourceType": "Organization",
+                "id": "Organization/23",
+                "name": "Outpatient"
+            },
+            "transaction": {
+                "method": "POST",
+                "url": "Organization"
+            },
+            "base": "http://localhost:8080/fhir"
+        },
+        {
+            "resource": {
+                "resourceType": "Claim",
+                "identifier": [
+                    {
+                        "value": "12345678900000VAA"
+                    }
+                ],
+                "diagnosis": [
+                    {
+                        "sequence": "1",
+                        "diagnosis": {
+                            "value": "56400"
+                        }
+                    },
+                    {
+                        "sequence": "2",
+                        "diagnosis": {
+                            "value": "7245"
+                        }
+                    },
+                    {
+                        "sequence": "3",
+                        "diagnosis": {
+                            "value": "V1588"
+                        }
+                    }
+                ],
+                "item": []
+            },
+            "transaction": {
+                "method": "POST",
+                "url": "Claim"
+            },
+            "base": "http://localhost:8080/fhir"
+        },
+        {
+            "resource": {
+                "resourceType": "PaymentReconciliation",
+                "identifier": [
+                    {
+                        "value": "12345678900000VAA"
+                    }
+                ],
+                "detail": [],
+                "period": {
+                    "start": "2012-09-22"
+                }
+            },
+            "transaction": {
+                "method": "POST",
+                "url": "PaymentReconciliation"
+            },
+            "base": "http://localhost:8080/fhir"
+        },
+        {
+            "resource": {
+                "resourceType": "Claim",
+                "identifier": [
+                    {
+                        "value": "12345678900000VAA"
+                    }
+                ],
+                "diagnosis": [
+                    {
+                        "sequence": "1",
+                        "diagnosis": {
+                            "display": ""
+                        }
+                    }
+                ],
+                "item": [
+                    {
+                        "modifier": [
+                            {
+                                "display": ""
+                            }
+                        ],
+                        "detail": [
+                            {
+                                "sequence": 1,
+                                "quantity": {
+                                    "value": "1"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "modifier": [
+                            {
+                                "display": ""
+                            }
+                        ]
+                    },
+                    {
+                        "modifier": [
+                            {
+                                "display": ""
+                            }
+                        ]
+                    },
+                    {
+                        "modifier": [
+                            {
+                                "display": ""
+                            }
+                        ]
+                    }
+                ]
+            },
+            "transaction": {
+                "method": "POST",
+                "url": "Claim"
+            },
+            "base": "http://localhost:8080/fhir"
+        },
+        {
+            "resource": {
+                "resourceType": "ClaimResponse",
+                "item": [
+                    {
+                        "adjudication": [
+                            {
+                                "code": {
+                                    "code": "total"
+                                },
+                                "amount": {
+                                    "value": 14.3,
+                                    "code": "USD"
+                                }
+                            },
+                            {
+                                "code": {
+                                    "code": "allowedAmount"
+                                },
+                                "amount": {
+                                    "value": 14.3,
+                                    "code": "USD"
+                                }
+                            },
+                            {
+                                "code": {
+                                    "code": "nonCovered"
+                                },
+                                "amount": {
+                                    "value": 0,
+                                    "code": "USD"
+                                }
+                            }
+                        ]
+                    }
+                ],
+                "request": {}
+            },
+            "transaction": {
+                "method": "POST",
+                "url": "ClaimResponse"
+            },
+            "base": "http://localhost:8080/fhir"
+        },
+        {
+            "resource": {
+                "resourceType": "PaymentReconciliation",
+                "identifier": [
+                    {
+                        "value": "12345678900000VAA"
+                    }
+                ],
+                "detail": [],
+                "period": {
+                    "start": "2012-09-22"
+                }
+            },
+            "transaction": {
+                "method": "POST",
+                "url": "PaymentReconciliation"
+            },
+            "base": "http://localhost:8080/fhir"
+        },
+        {
+            "resource": {
+                "resourceType": "Claim",
+                "identifier": [
+                    {
+                        "value": "12345678900000VAA"
+                    }
+                ],
+                "diagnosis": [
+                    {
+                        "sequence": "1",
+                        "diagnosis": {
+                            "code": "74020",
+                            "display": "Radiologic Examination, Abdomen; Complete, Including Decubitus And/Or Erect Views"
+                        }
+                    }
+                ],
+                "item": [
+                    {
+                        "modifier": [
+                            {
+                                "display": ""
+                            }
+                        ],
+                        "detail": [
+                            {
+                                "sequence": 1,
+                                "quantity": {
+                                    "value": "1"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "modifier": [
+                            {
+                                "display": ""
+                            }
+                        ]
+                    },
+                    {
+                        "modifier": [
+                            {
+                                "display": ""
+                            }
+                        ]
+                    },
+                    {
+                        "modifier": [
+                            {
+                                "display": ""
+                            }
+                        ]
+                    }
+                ]
+            },
+            "transaction": {
+                "method": "POST",
+                "url": "Claim"
+            },
+            "base": "http://localhost:8080/fhir"
+        },
+        {
+            "resource": {
+                "resourceType": "ClaimResponse",
+                "item": [
+                    {
+                        "adjudication": [
+                            {
+                                "code": {
+                                    "code": "total"
+                                },
+                                "amount": {
+                                    "value": 175.5,
+                                    "code": "USD"
+                                }
+                            },
+                            {
+                                "code": {
+                                    "code": "allowedAmount"
+                                },
+                                "amount": {
+                                    "value": 175.5,
+                                    "code": "USD"
+                                }
+                            },
+                            {
+                                "code": {
+                                    "code": "nonCovered"
+                                },
+                                "amount": {
+                                    "value": 0,
+                                    "code": "USD"
+                                }
+                            }
+                        ]
+                    }
+                ],
+                "request": {}
+            },
+            "transaction": {
+                "method": "POST",
+                "url": "ClaimResponse"
+            },
+            "base": "http://localhost:8080/fhir"
+        },
+        {
+            "resource": {
+                "resourceType": "PaymentReconciliation",
+                "identifier": [
+                    {
+                        "value": "12345678900000VAA"
+                    }
+                ],
+                "detail": [],
+                "period": {
+                    "start": "2012-09-22"
+                }
+            },
+            "transaction": {
+                "method": "POST",
+                "url": "PaymentReconciliation"
+            },
+            "base": "http://localhost:8080/fhir"
+        },
+        {
+            "resource": {
+                "resourceType": "Claim",
+                "identifier": [
+                    {
+                        "value": "12345678900000VAA"
+                    }
+                ],
+                "diagnosis": [
+                    {
+                        "sequence": "1",
+                        "diagnosis": {
+                            "code": "99283",
+                            "display": "Emergency Department Visit For The Evaluation And Management Of A Patient, Which Requires Th"
+                        }
+                    }
+                ],
+                "item": [
+                    {
+                        "modifier": [
+                            {
+                                "code": "25",
+                                "display": "Significant, Separately Identifiable Evaluation And Management Service By The Same Physician On"
+                            }
+                        ],
+                        "detail": [
+                            {
+                                "sequence": 1,
+                                "quantity": {
+                                    "value": "1"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "modifier": [
+                            {
+                                "display": ""
+                            }
+                        ]
+                    },
+                    {
+                        "modifier": [
+                            {
+                                "display": ""
+                            }
+                        ]
+                    },
+                    {
+                        "modifier": [
+                            {
+                                "display": ""
+                            }
+                        ]
+                    }
+                ]
+            },
+            "transaction": {
+                "method": "POST",
+                "url": "Claim"
+            },
+            "base": "http://localhost:8080/fhir"
+        },
+        {
+            "resource": {
+                "resourceType": "ClaimResponse",
+                "item": [
+                    {
+                        "adjudication": [
+                            {
+                                "code": {
+                                    "code": "total"
+                                },
+                                "amount": {
+                                    "value": 315,
+                                    "code": "USD"
+                                }
+                            },
+                            {
+                                "code": {
+                                    "code": "allowedAmount"
+                                },
+                                "amount": {
+                                    "value": 315,
+                                    "code": "USD"
+                                }
+                            },
+                            {
+                                "code": {
+                                    "code": "nonCovered"
+                                },
+                                "amount": {
+                                    "value": 0,
+                                    "code": "USD"
+                                }
+                            }
+                        ]
+                    }
+                ],
+                "request": {}
+            },
+            "transaction": {
+                "method": "POST",
+                "url": "ClaimResponse"
+            },
+            "base": "http://localhost:8080/fhir"
+        },
+        {
+            "resource": {
+                "resourceType": "PaymentReconciliation",
+                "identifier": [
+                    {
+                        "value": "1234567890123"
+                    }
+                ],
+                "detail": [],
+                "requestProvider": {
+                    "reference": "Practitioner/24"
+                },
+                "period": {
+                    "start": "2012-12-01"
+                },
+                "organization": {
+                    "reference": "Organization/25"
+                }
+            },
+            "transaction": {
+                "method": "POST",
+                "url": "PaymentReconciliation"
+            },
+            "base": "http://localhost:8080/fhir"
+        },
+        {
+            "resource": {
+                "resourceType": "Practitioner",
+                "id": "Practitioner/24",
+                "name": [
+                    {
+                        "text": "No Information Available"
+                    }
+                ],
+                "address": [
+                    {
+                        "text": ""
+                    }
+                ]
+            },
+            "transaction": {
+                "method": "POST",
+                "url": "Practitioner"
+            },
+            "base": "http://localhost:8080/fhir"
+        },
+        {
+            "resource": {
+                "resourceType": "Organization",
+                "id": "Organization/25",
+                "name": "PartB"
+            },
+            "transaction": {
+                "method": "POST",
+                "url": "Organization"
+            },
+            "base": "http://localhost:8080/fhir"
+        },
+        {
+            "resource": {
+                "resourceType": "Claim",
+                "identifier": [
+                    {
+                        "value": "12345678900000VAA"
+                    }
+                ],
+                "diagnosis": [
+                    {
+                        "sequence": "1",
+                        "diagnosis": {
+                            "display": ""
+                        }
+                    },
+                    {
+                        "sequence": "2",
+                        "diagnosis": {
+                            "value": "7392"
+                        }
+                    },
+                    {
+                        "sequence": "3",
+                        "diagnosis": {
+                            "value": "7241"
+                        }
+                    },
+                    {
+                        "sequence": "4",
+                        "diagnosis": {
+                            "value": "7393"
+                        }
+                    },
+                    {
+                        "sequence": "5",
+                        "diagnosis": {
+                            "value": "7391"
+                        }
+                    }
+                ],
+                "item": [
+                    {
+                        "modifier": [
+                            {
+                                "display": ""
+                            }
+                        ],
+                        "detail": [
+                            {
+                                "sequence": 1,
+                                "quantity": {
+                                    "value": "0"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "modifier": [
+                            {
+                                "display": ""
+                            }
+                        ]
+                    },
+                    {
+                        "modifier": [
+                            {
+                                "display": ""
+                            }
+                        ]
+                    },
+                    {
+                        "modifier": [
+                            {
+                                "display": ""
+                            }
+                        ]
+                    }
+                ]
+            },
+            "transaction": {
+                "method": "POST",
+                "url": "Claim"
+            },
+            "base": "http://localhost:8080/fhir"
+        },
+        {
+            "resource": {
+                "resourceType": "ClaimResponse",
+                "item": [
+                    {
+                        "adjudication": [
+                            {
+                                "code": {
+                                    "code": "total"
+                                },
+                                "amount": {
+                                    "value": 504.8,
+                                    "code": "USD"
+                                }
+                            },
+                            {
+                                "code": {
+                                    "code": "allowedAmount"
+                                },
+                                "amount": {
+                                    "value": 504.8,
+                                    "code": "USD"
+                                }
+                            },
+                            {
+                                "code": {
+                                    "code": "nonCovered"
+                                },
+                                "amount": {
+                                    "value": 0,
+                                    "code": "USD"
+                                }
+                            }
+                        ]
+                    }
+                ],
+                "request": {}
+            },
+            "transaction": {
+                "method": "POST",
+                "url": "ClaimResponse"
+            },
+            "base": "http://localhost:8080/fhir"
+        },
+        {
+            "resource": {
+                "resourceType": "PaymentReconciliation",
+                "identifier": [
+                    {
+                        "value": "1234567890123"
+                    }
+                ],
+                "detail": [],
+                "period": {
+                    "start": "2012-12-01",
+                    "end": "2012-12-01"
+                }
+            },
+            "transaction": {
+                "method": "POST",
+                "url": "PaymentReconciliation"
+            },
+            "base": "http://localhost:8080/fhir"
+        },
+        {
+            "resource": {
+                "resourceType": "Location",
+                "id": "Location/26",
+                "physicalType": {
+                    "code": "11",
+                    "display": "Office"
+                }
+            },
+            "transaction": {
+                "method": "POST",
+                "url": "Location"
+            },
+            "base": "http://localhost:8080/fhir"
+        },
+        {
+            "resource": {
+                "resourceType": "Practitioner",
+                "identifier": [
+                    {
+                        "value": "123456789"
+                    }
+                ]
+            },
+            "transaction": {
+                "method": "POST",
+                "url": "Practitioner"
+            },
+            "base": "http://localhost:8080/fhir"
+        },
+        {
+            "resource": {
+                "resourceType": "Claim",
+                "identifier": [
+                    {
+                        "value": "1234567890123"
+                    }
+                ],
+                "diagnosis": [
+                    {
+                        "sequence": "1",
+                        "diagnosis": {
+                            "code": "98941",
+                            "display": "Chiropractic Manipulative Treatment, 3 To 4 Spinal Regions"
+                        }
+                    }
+                ],
+                "item": [
+                    {
+                        "modifier": [
+                            {
+                                "code": "GA",
+                                "display": "Waiver Of Liability Statement Issued As Required By Payer Policy, Individual Case"
+                            }
+                        ],
+                        "detail": [
+                            {
+                                "sequence": 1,
+                                "quantity": {
+                                    "value": "1"
+                                }
+                            }
+                        ],
+                        "service": {
+                            "code": "1",
+                            "display": "Medical Care"
+                        }
+                    },
+                    {
+                        "modifier": [
+                            {
+                                "display": ""
+                            }
+                        ]
+                    },
+                    {
+                        "modifier": [
+                            {
+                                "display": ""
+                            }
+                        ]
+                    },
+                    {
+                        "modifier": [
+                            {
+                                "display": ""
+                            }
+                        ]
+                    }
+                ],
+                "facility": {
+                    "reference": "Location/26"
+                }
+            },
+            "transaction": {
+                "method": "POST",
+                "url": "Claim"
+            },
+            "base": "http://localhost:8080/fhir"
+        },
+        {
+            "resource": {
+                "resourceType": "PaymentReconciliation",
+                "identifier": [
+                    {
+                        "value": "1234567890123"
+                    }
+                ],
+                "detail": [],
+                "period": {
+                    "start": "2012-12-01",
+                    "end": "2012-12-01"
+                }
+            },
+            "transaction": {
+                "method": "POST",
+                "url": "PaymentReconciliation"
+            },
+            "base": "http://localhost:8080/fhir"
+        },
+        {
+            "resource": {
+                "resourceType": "Location",
+                "id": "Location/27",
+                "physicalType": {
+                    "code": "11",
+                    "display": "Office"
+                }
+            },
+            "transaction": {
+                "method": "POST",
+                "url": "Location"
+            },
+            "base": "http://localhost:8080/fhir"
+        },
+        {
+            "resource": {
+                "resourceType": "Practitioner",
+                "identifier": [
+                    {
+                        "value": "123456789"
+                    }
+                ]
+            },
+            "transaction": {
+                "method": "POST",
+                "url": "Practitioner"
+            },
+            "base": "http://localhost:8080/fhir"
+        },
+        {
+            "resource": {
+                "resourceType": "Claim",
+                "identifier": [
+                    {
+                        "value": "1234567890123"
+                    }
+                ],
+                "diagnosis": [
+                    {
+                        "sequence": "1",
+                        "diagnosis": {
+                            "code": "G0283",
+                            "display": "Electrical Stimulation (Unattended), To One Or More Areas For Indication(S) Other Than Wound"
+                        }
+                    }
+                ],
+                "item": [
+                    {
+                        "modifier": [
+                            {
+                                "code": "GY",
+                                "display": "Item Or Service Statutorily Excluded, Does Not Meet The Definition Of Any Medicare Benefit Or,"
+                            }
+                        ],
+                        "detail": [
+                            {
+                                "sequence": 1,
+                                "quantity": {
+                                    "value": "1"
+                                }
+                            }
+                        ],
+                        "service": {
+                            "code": "1",
+                            "display": "Medical Care"
+                        }
+                    },
+                    {
+                        "modifier": [
+                            {
+                                "display": ""
+                            }
+                        ]
+                    },
+                    {
+                        "modifier": [
+                            {
+                                "display": ""
+                            }
+                        ]
+                    },
+                    {
+                        "modifier": [
+                            {
+                                "display": ""
+                            }
+                        ]
+                    }
+                ],
+                "facility": {
+                    "reference": "Location/27"
+                }
+            },
+            "transaction": {
+                "method": "POST",
+                "url": "Claim"
+            },
+            "base": "http://localhost:8080/fhir"
+        },
+        {
+            "resource": {
+                "resourceType": "PaymentReconciliation",
+                "identifier": [
+                    {
+                        "value": "123456789"
+                    }
+                ],
+                "detail": [],
+                "organization": {
+                    "reference": "Organization/28"
+                },
+                "period": {
+                    "start": "2011-11-17"
+                },
+                "requestProvider": {
+                    "reference": "Practitioner/29"
+                }
+            },
+            "transaction": {
+                "method": "POST",
+                "url": "PaymentReconciliation"
+            },
+            "base": "http://localhost:8080/fhir"
+        },
+        {
+            "resource": {
+                "resourceType": "Organization",
+                "id": "Organization/28",
+                "name": "Part D"
+            },
+            "transaction": {
+                "method": "POST",
+                "url": "Organization"
+            },
+            "base": "http://localhost:8080/fhir"
+        },
+        {
+            "resource": {
+                "resourceType": "Practitioner",
+                "id": "Practitioner/29",
+                "name": [
+                    {
+                        "text": "PHARMACY2 #00000"
+                    }
+                ],
+                "address": [
+                    {
+                        "text": "PHARMACY2 #00000"
+                    }
+                ]
+            },
+            "transaction": {
+                "method": "POST",
+                "url": "Practitioner"
+            },
+            "base": "http://localhost:8080/fhir"
+        },
+        {
+            "resource": {
+                "resourceType": "Medication",
+                "id": "Medication/30",
+                "code": {
+                    "text": "CARVEDILOL",
+                    "coding": [
+                        {
+                            "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+                            "code": "00093013505"
+                        }
+                    ]
+                }
+            },
+            "transaction": {
+                "method": "POST",
+                "url": "Medication"
+            },
+            "base": "http://localhost:8080/fhir"
+        },
+        {
+            "resource": {
+                "resourceType": "MedicationDispense",
+                "medication": {
+                    "reference": "Medication/30"
+                },
+                "type": {
+                    "coding": [
+                        {
+                            "system": "http://hl7.org/fhir/v3/ActCode",
+                            "code": "RF",
+                            "display": "0"
+                        }
+                    ]
+                },
+                "daysSupply": {
+                    "value": "30"
+                },
+                "dispenser": {
+                    "reference": "Practitioner/31"
+                }
+            },
+            "transaction": {
+                "method": "POST",
+                "url": "MedicationDispense"
+            },
+            "base": "http://localhost:8080/fhir"
+        },
+        {
+            "resource": {
+                "resourceType": "Practitioner",
+                "id": "Practitioner/31",
+                "identifier": [
+                    [
+                        {
+                            "value": "123456789"
+                        }
+                    ]
+                ],
+                "name": [
+                    {
+                        "text": "Jane Doe"
+                    }
+                ]
+            },
+            "transaction": {
+                "method": "POST",
+                "url": "Practitioner"
+            },
+            "base": "http://localhost:8080/fhir"
+        },
+        {
+            "resource": {
+                "resourceType": "PaymentReconciliation",
+                "identifier": [
+                    {
+                        "value": "1234567890"
+                    }
+                ],
+                "detail": [],
+                "organization": {
+                    "reference": "Organization/32"
+                },
+                "period": {
+                    "start": "2011-11-23"
+                },
+                "requestProvider": {
+                    "reference": "Practitioner/33"
+                }
+            },
+            "transaction": {
+                "method": "POST",
+                "url": "PaymentReconciliation"
+            },
+            "base": "http://localhost:8080/fhir"
+        },
+        {
+            "resource": {
+                "resourceType": "Organization",
+                "id": "Organization/32",
+                "name": "Part D"
+            },
+            "transaction": {
+                "method": "POST",
+                "url": "Organization"
+            },
+            "base": "http://localhost:8080/fhir"
+        },
+        {
+            "resource": {
+                "resourceType": "Practitioner",
+                "id": "Practitioner/33",
+                "name": [
+                    {
+                        "text": "PHARMACY3 #00000"
+                    }
+                ],
+                "address": [
+                    {
+                        "text": "PHARMACY3 #00000"
+                    }
+                ]
+            },
+            "transaction": {
+                "method": "POST",
+                "url": "Practitioner"
+            },
+            "base": "http://localhost:8080/fhir"
+        },
+        {
+            "resource": {
+                "resourceType": "Medication",
+                "id": "Medication/34",
+                "code": {
+                    "text": "OMEPRAZOLE",
+                    "coding": [
+                        {
+                            "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+                            "code": "00781223310"
+                        }
+                    ]
+                }
+            },
+            "transaction": {
+                "method": "POST",
+                "url": "Medication"
+            },
+            "base": "http://localhost:8080/fhir"
+        },
+        {
+            "resource": {
+                "resourceType": "MedicationDispense",
+                "medication": {
+                    "reference": "Medication/34"
+                },
+                "type": {
+                    "coding": [
+                        {
+                            "system": "http://hl7.org/fhir/v3/ActCode",
+                            "code": "RF",
+                            "display": "4"
+                        }
+                    ]
+                },
+                "daysSupply": {
+                    "value": "30"
+                },
+                "dispenser": {
+                    "reference": "Practitioner/35"
+                }
+            },
+            "transaction": {
+                "method": "POST",
+                "url": "MedicationDispense"
+            },
+            "base": "http://localhost:8080/fhir"
+        },
+        {
+            "resource": {
+                "resourceType": "Practitioner",
+                "id": "Practitioner/35",
+                "identifier": [
+                    [
+                        {
+                            "value": "123456789"
+                        }
+                    ]
+                ],
+                "name": [
+                    {
+                        "text": "Jane Doe"
+                    }
+                ]
+            },
+            "transaction": {
+                "method": "POST",
+                "url": "Practitioner"
+            },
+            "base": "http://localhost:8080/fhir"
+        }
+    ],
+    "base": "http://localhost:8080/fhir"
+}
