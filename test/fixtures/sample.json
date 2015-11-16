@@ -1,6 +1,6 @@
 {
     "resourceType": "Bundle",
-    "type": "transaction",
+    "type": "request",
     "entry": [
         {
             "resource": {
@@ -141,7 +141,7 @@
                     }
                 ]
             },
-            "transaction": {
+            "request": {
                 "method": "POST",
                 "url": "Patient"
             },
@@ -153,7 +153,7 @@
                 "id": "Organization/0",
                 "name": "MyMedicare.gov"
             },
-            "transaction": {
+            "request": {
                 "method": "POST",
                 "url": "Organization"
             },
@@ -162,9 +162,11 @@
         {
             "resource": {
                 "resourceType": "Provenance",
-                "target": {
-                    "reference": "Patient/test"
-                },
+                "target": [
+                    {
+                        "reference": "Patient/test"
+                    }
+                ],
                 "agent": [
                     {
                         "role": {
@@ -172,17 +174,13 @@
                             "system": "http://hl7.org/fhir/ValueSet/provenance-agent-role",
                             "display": "Enterer"
                         },
-                        "type": {
-                            "system": "http://hl7.org/fhir/provenance-participant-type",
-                            "code": "organization"
-                        },
-                        "referenceReference": {
+                        "actor": {
                             "reference": "Organization/0"
                         }
                     }
                 ]
             },
-            "transaction": {
+            "request": {
                 "method": "POST",
                 "url": "Provenance"
             },
@@ -198,9 +196,9 @@
                     "text": "Arthritis"
                 },
                 "onsetDateTime": "2005-08-09",
-                "abatementDate": "2011-02-28"
+                "abatementDateTime": "2011-02-28"
             },
-            "transaction": {
+            "request": {
                 "method": "POST",
                 "url": "Condition"
             },
@@ -216,9 +214,9 @@
                     "text": "Asthma"
                 },
                 "onsetDateTime": "2008-01-25",
-                "abatementDate": "2010-01-25"
+                "abatementDateTime": "2010-01-25"
             },
-            "transaction": {
+            "request": {
                 "method": "POST",
                 "url": "Condition"
             },
@@ -237,7 +235,7 @@
                     "text": "Antibotic"
                 },
                 "category": "Drugs",
-                "event": [
+                "reaction": [
                     {
                         "manifestation": [
                             {
@@ -252,7 +250,7 @@
                 "lastOccurence": "1955-03-13",
                 "comment": "Erythromycin"
             },
-            "transaction": {
+            "request": {
                 "method": "POST",
                 "url": "AllergyIntolerance"
             },
@@ -266,7 +264,7 @@
                 },
                 "mitigation": "Allergy Shots"
             },
-            "transaction": {
+            "request": {
                 "method": "POST",
                 "url": "RiskAssessment"
             },
@@ -285,7 +283,7 @@
                     "text": "Grasses"
                 },
                 "category": "Environmental",
-                "event": [
+                "reaction": [
                     {
                         "manifestation": [
                             {
@@ -300,7 +298,7 @@
                 "lastOccurence": "1996-07-20",
                 "comment": ""
             },
-            "transaction": {
+            "request": {
                 "method": "POST",
                 "url": "AllergyIntolerance"
             },
@@ -314,7 +312,7 @@
                 },
                 "mitigation": "Avoidance"
             },
-            "transaction": {
+            "request": {
                 "method": "POST",
                 "url": "RiskAssessment"
             },
@@ -331,7 +329,7 @@
                     "text": "Artificial Eye Lenses"
                 }
             },
-            "transaction": {
+            "request": {
                 "method": "POST",
                 "url": "Device"
             },
@@ -340,11 +338,11 @@
         {
             "resource": {
                 "resourceType": "Procedure",
-                "patient": {
+                "subject": {
                     "reference": "Patient/test"
                 },
                 "status": "completed",
-                "device": [
+                "focalDevice": [
                     {
                         "action": {
                             "text": "Artificial Eye Lenses"
@@ -356,7 +354,7 @@
                 ],
                 "performedDateTime": "1942-01-27"
             },
-            "transaction": {
+            "request": {
                 "method": "POST",
                 "url": "Procedure"
             },
@@ -369,7 +367,7 @@
                     "reference": "Patient/test"
                 },
                 "reported": "true",
-                "vaccineType": {
+                "vaccineCode": {
                     "text": "Varicella/Chicken Pox"
                 },
                 "date": "2002-04-21",
@@ -382,7 +380,7 @@
                     }
                 ]
             },
-            "transaction": {
+            "request": {
                 "method": "POST",
                 "url": "Immunization"
             },
@@ -395,7 +393,7 @@
                     "reference": "Patient/test"
                 },
                 "reported": "true",
-                "vaccineType": {
+                "vaccineCode": {
                     "text": "typhoid"
                 },
                 "date": "2009-01-02",
@@ -403,7 +401,7 @@
                     "text": "Injection"
                 }
             },
-            "transaction": {
+            "request": {
                 "method": "POST",
                 "url": "Immunization"
             },
@@ -425,11 +423,11 @@
                 "code": {
                     "text": "Glucose Level"
                 },
-                "valueDateTime": "2008-03-21",
+                "effectiveDateTime": "2008-03-21",
                 "valueString": "135, 170, 150, 120",
                 "comments": "Fasting, hour 1, hour 2, hour 3"
             },
-            "transaction": {
+            "request": {
                 "method": "POST",
                 "url": "Observation"
             },
@@ -438,14 +436,12 @@
         {
             "resource": {
                 "resourceType": "Practitioner",
-                "name": [
-                    {
-                        "text": "Dr. Smith"
-                    }
-                ],
+                "name": {
+                    "text": "Dr. Smith"
+                },
                 "id": "Practitioner/2"
             },
-            "transaction": {
+            "request": {
                 "method": "POST",
                 "url": "Practitioner"
             },
@@ -453,6 +449,11 @@
         },
         {
             "resource": {
+                "0": {
+                    "note": {
+                        "text": "Ongoing elevated glucose"
+                    }
+                },
                 "resourceType": "DiagnosticOrder",
                 "subject": {
                     "reference": "Patient/test"
@@ -460,7 +461,6 @@
                 "orderer": {
                     "reference": "Practitioner/2"
                 },
-                "clinicalNotes": "Ongoing elevated glucose",
                 "id": "DiagnosticOrder/3",
                 "supportingInformation": [
                     {
@@ -468,7 +468,7 @@
                     }
                 ]
             },
-            "transaction": {
+            "request": {
                 "method": "POST",
                 "url": "DiagnosticOrder"
             },
@@ -477,14 +477,12 @@
         {
             "resource": {
                 "resourceType": "Practitioner",
-                "name": [
-                    {
-                        "text": "AnyLab"
-                    }
-                ],
+                "name": {
+                    "text": "AnyLab"
+                },
                 "id": "Practitioner/4"
             },
-            "transaction": {
+            "request": {
                 "method": "POST",
                 "url": "Practitioner"
             },
@@ -500,16 +498,18 @@
                 "performer": {
                     "reference": "Practitioner/4"
                 },
-                "name": {
+                "code": {
                     "text": "Ongoing elevated glucose"
                 },
                 "conclusion": "135, 170, 150, 120",
                 "status": "final",
-                "requestDetail": {
-                    "reference": "DiagnosticOrder/3"
-                }
+                "request": [
+                    {
+                        "reference": "DiagnosticOrder/3"
+                    }
+                ]
             },
-            "transaction": {
+            "request": {
                 "method": "POST",
                 "url": "DiagnosticReport"
             },
@@ -530,11 +530,11 @@
                 "code": {
                     "text": "Blood Pressure"
                 },
-                "appliesDateTime": "2011-07-22T15:00:00",
+                "effectiveDateTime": "2011-07-22T15:00:00",
                 "valueString": "120/80",
                 "comments": ""
             },
-            "transaction": {
+            "request": {
                 "method": "POST",
                 "url": "Observation"
             },
@@ -555,11 +555,11 @@
                 "code": {
                     "text": "Glucose"
                 },
-                "appliesDateTime": "2012-03-20T12:00:00",
+                "effectiveDateTime": "2012-03-20T12:00:00",
                 "valueString": "110",
                 "comments": ""
             },
-            "transaction": {
+            "request": {
                 "method": "POST",
                 "url": "Observation"
             },
@@ -573,16 +573,20 @@
                 },
                 "condition": [
                     {
-                        "type": {
+                        "code": {
                             "text": "Allergy"
                         },
-                        "note": "Antiarrythmia\nAntibiotic\nAnticonvulsants"
+                        "note": {
+                            "text": "Antiarrythmia\nAntibiotic\nAnticonvulsants"
+                        }
                     },
                     {
-                        "type": {
+                        "code": {
                             "text": "Condition"
                         },
-                        "note": "Allergies\nAlzheimer's Disease\nAngina (Heart Pain)\nCataracts"
+                        "note": {
+                            "text": "Allergies\nAlzheimer's Disease\nAngina (Heart Pain)\nCataracts"
+                        }
                     }
                 ],
                 "relationship": {
@@ -590,7 +594,7 @@
                 },
                 "bornDate": "1915-01-10"
             },
-            "transaction": {
+            "request": {
                 "method": "POST",
                 "url": "FamilyMemberHistory"
             },
@@ -600,12 +604,11 @@
             "resource": {
                 "resourceType": "Medication",
                 "id": "Medication/7",
-                "name": "Aspirin",
                 "code": {
                     "text": "Aspirin"
                 }
             },
-            "transaction": {
+            "request": {
                 "method": "POST",
                 "url": "Medication"
             },
@@ -620,7 +623,7 @@
                 "informationSource": {
                     "reference": "Patient/test"
                 },
-                "medication": {
+                "medicationReference": {
                     "reference": "Medication/7"
                 },
                 "dosage": [
@@ -630,7 +633,7 @@
                 ],
                 "note": "Aspirin"
             },
-            "transaction": {
+            "request": {
                 "method": "POST",
                 "url": "MedicationStatement"
             },
@@ -638,25 +641,27 @@
         },
         {
             "resource": {
-                "resourceType": "MedicationPrescription",
-                "id": "MedicationPrescription/6",
+                "resourceType": "MedicationOrder",
+                "id": "MedicationOrder/6",
                 "patient": {
                     "reference": "Patient/test"
                 },
-                "dispense": {
-                    "expectedSupplyDuration": {
-                        "low": {
-                            "units": "Dialy"
+                "dosageInstruction": [
+                    {
+                        "timing": {
+                            "repeat": {
+                                "durationUnits": "Dialy"
+                            }
                         }
                     }
-                },
-                "medication": {
+                ],
+                "medicationReference": {
                     "reference": "Medication/7"
                 }
             },
-            "transaction": {
+            "request": {
                 "method": "POST",
-                "url": "MedicationPrescription"
+                "url": "MedicationOrder"
             },
             "base": "http://localhost:8080/fhir"
         },
@@ -666,16 +671,18 @@
                 "patient": {
                     "reference": "Patient/test"
                 },
-                "authorizingPrescription": {
-                    "reference": "MedicationPrescription/6"
-                },
+                "authorizingPrescription": [
+                    {
+                        "reference": "MedicationOrder/6"
+                    }
+                ],
                 "substitution": {
                     "type": {
                         "text": "Aspirin"
                     }
                 }
             },
-            "transaction": {
+            "request": {
                 "method": "POST",
                 "url": "MedicationDispense"
             },
@@ -683,71 +690,24 @@
         },
         {
             "resource": {
-                "resourceType": "Organization",
-                "id": "Organization/8",
-                "name": "MyMedicare.gov"
-            },
-            "transaction": {
-                "method": "POST",
-                "url": "Organization"
-            },
-            "base": "http://localhost:8080/fhir"
-        },
-        {
-            "resource": {
-                "resourceType": "DiagnosticOrder",
-                "subject": {
-                    "reference": "Patient/test"
-                },
-                "orderer": {
-                    "reference": "Organization/8"
-                },
-                "item": [
+                "resourceType": "Provenance",
+                "id": "Provenance/9",
+                "agent": [
                     {
-                        "code": {
-                            "text": "DIABETES"
+                        "actor": {
+                            "reference": "Organization/10"
                         }
+                    }
+                ],
+                "target": [
+                    {
+                        "reference": "DiagnosticOrder/8"
                     }
                 ]
             },
-            "transaction": {
+            "request": {
                 "method": "POST",
-                "url": "DiagnosticOrder"
-            },
-            "base": "http://localhost:8080/fhir"
-        },
-        {
-            "resource": {
-                "resourceType": "Organization",
-                "id": "Organization/9",
-                "name": "MyMedicare.gov"
-            },
-            "transaction": {
-                "method": "POST",
-                "url": "Organization"
-            },
-            "base": "http://localhost:8080/fhir"
-        },
-        {
-            "resource": {
-                "resourceType": "DiagnosticOrder",
-                "subject": {
-                    "reference": "Patient/test"
-                },
-                "orderer": {
-                    "reference": "Organization/9"
-                },
-                "item": [
-                    {
-                        "code": {
-                            "text": "PAP TEST DR"
-                        }
-                    }
-                ]
-            },
-            "transaction": {
-                "method": "POST",
-                "url": "DiagnosticOrder"
+                "url": "Provenance"
             },
             "base": "http://localhost:8080/fhir"
         },
@@ -757,7 +717,7 @@
                 "id": "Organization/10",
                 "name": "MyMedicare.gov"
             },
-            "transaction": {
+            "request": {
                 "method": "POST",
                 "url": "Organization"
             },
@@ -766,11 +726,121 @@
         {
             "resource": {
                 "resourceType": "DiagnosticOrder",
+                "id": "DiagnosticOrder/8",
                 "subject": {
                     "reference": "Patient/test"
                 },
-                "orderer": {
-                    "reference": "Organization/10"
+                "item": [
+                    {
+                        "code": {
+                            "text": "DIABETES"
+                        }
+                    }
+                ]
+            },
+            "request": {
+                "method": "POST",
+                "url": "DiagnosticOrder"
+            },
+            "base": "http://localhost:8080/fhir"
+        },
+        {
+            "resource": {
+                "resourceType": "Provenance",
+                "id": "Provenance/12",
+                "agent": [
+                    {
+                        "actor": {
+                            "reference": "Organization/13"
+                        }
+                    }
+                ],
+                "target": [
+                    {
+                        "reference": "DiagnosticOrder/11"
+                    }
+                ]
+            },
+            "request": {
+                "method": "POST",
+                "url": "Provenance"
+            },
+            "base": "http://localhost:8080/fhir"
+        },
+        {
+            "resource": {
+                "resourceType": "Organization",
+                "id": "Organization/13",
+                "name": "MyMedicare.gov"
+            },
+            "request": {
+                "method": "POST",
+                "url": "Organization"
+            },
+            "base": "http://localhost:8080/fhir"
+        },
+        {
+            "resource": {
+                "resourceType": "DiagnosticOrder",
+                "id": "DiagnosticOrder/11",
+                "subject": {
+                    "reference": "Patient/test"
+                },
+                "item": [
+                    {
+                        "code": {
+                            "text": "PAP TEST DR"
+                        }
+                    }
+                ]
+            },
+            "request": {
+                "method": "POST",
+                "url": "DiagnosticOrder"
+            },
+            "base": "http://localhost:8080/fhir"
+        },
+        {
+            "resource": {
+                "resourceType": "Provenance",
+                "id": "Provenance/15",
+                "agent": [
+                    {
+                        "actor": {
+                            "reference": "Organization/16"
+                        }
+                    }
+                ],
+                "target": [
+                    {
+                        "reference": "DiagnosticOrder/14"
+                    }
+                ]
+            },
+            "request": {
+                "method": "POST",
+                "url": "Provenance"
+            },
+            "base": "http://localhost:8080/fhir"
+        },
+        {
+            "resource": {
+                "resourceType": "Organization",
+                "id": "Organization/16",
+                "name": "MyMedicare.gov"
+            },
+            "request": {
+                "method": "POST",
+                "url": "Organization"
+            },
+            "base": "http://localhost:8080/fhir"
+        },
+        {
+            "resource": {
+                "resourceType": "DiagnosticOrder",
+                "id": "DiagnosticOrder/14",
+                "subject": {
+                    "reference": "Patient/test"
                 },
                 "item": [
                     {
@@ -780,7 +850,7 @@
                     }
                 ]
             },
-            "transaction": {
+            "request": {
                 "method": "POST",
                 "url": "DiagnosticOrder"
             },
@@ -788,11 +858,34 @@
         },
         {
             "resource": {
+                "resourceType": "Provenance",
+                "id": "Provenance/18",
+                "agent": [
+                    {
+                        "actor": {
+                            "reference": "Organization/19"
+                        }
+                    }
+                ],
+                "target": [
+                    {
+                        "reference": "DiagnosticOrder/17"
+                    }
+                ]
+            },
+            "request": {
+                "method": "POST",
+                "url": "Provenance"
+            },
+            "base": "http://localhost:8080/fhir"
+        },
+        {
+            "resource": {
                 "resourceType": "Organization",
-                "id": "Organization/11",
+                "id": "Organization/19",
                 "name": "MyMedicare.gov"
             },
-            "transaction": {
+            "request": {
                 "method": "POST",
                 "url": "Organization"
             },
@@ -801,11 +894,9 @@
         {
             "resource": {
                 "resourceType": "DiagnosticOrder",
+                "id": "DiagnosticOrder/17",
                 "subject": {
                     "reference": "Patient/test"
-                },
-                "orderer": {
-                    "reference": "Organization/11"
                 },
                 "item": [
                     {
@@ -815,7 +906,7 @@
                     }
                 ]
             },
-            "transaction": {
+            "request": {
                 "method": "POST",
                 "url": "DiagnosticOrder"
             },
@@ -823,11 +914,34 @@
         },
         {
             "resource": {
+                "resourceType": "Provenance",
+                "id": "Provenance/21",
+                "agent": [
+                    {
+                        "actor": {
+                            "reference": "Organization/22"
+                        }
+                    }
+                ],
+                "target": [
+                    {
+                        "reference": "DiagnosticOrder/20"
+                    }
+                ]
+            },
+            "request": {
+                "method": "POST",
+                "url": "Provenance"
+            },
+            "base": "http://localhost:8080/fhir"
+        },
+        {
+            "resource": {
                 "resourceType": "Organization",
-                "id": "Organization/12",
+                "id": "Organization/22",
                 "name": "MyMedicare.gov"
             },
-            "transaction": {
+            "request": {
                 "method": "POST",
                 "url": "Organization"
             },
@@ -836,11 +950,9 @@
         {
             "resource": {
                 "resourceType": "DiagnosticOrder",
+                "id": "DiagnosticOrder/20",
                 "subject": {
                     "reference": "Patient/test"
-                },
-                "orderer": {
-                    "reference": "Organization/12"
                 },
                 "item": [
                     {
@@ -850,7 +962,7 @@
                     }
                 ]
             },
-            "transaction": {
+            "request": {
                 "method": "POST",
                 "url": "DiagnosticOrder"
             },
@@ -859,11 +971,9 @@
         {
             "resource": {
                 "resourceType": "Practitioner",
-                "name": [
-                    {
-                        "text": "ANY CARE"
-                    }
-                ],
+                "name": {
+                    "text": "ANY CARE"
+                },
                 "address": [
                     {
                         "text": "123 Any Rd, Anywhere, MD 99999"
@@ -882,7 +992,7 @@
                     }
                 ]
             },
-            "transaction": {
+            "request": {
                 "method": "POST",
                 "url": "Practitioner"
             },
@@ -891,11 +1001,9 @@
         {
             "resource": {
                 "resourceType": "Practitioner",
-                "name": [
-                    {
-                        "text": "Jane Doe"
-                    }
-                ],
+                "name": {
+                    "text": "Jane Doe"
+                },
                 "address": [
                     {
                         "text": "123 Road, Anywhere, VA 00001"
@@ -914,7 +1022,7 @@
                     }
                 ]
             },
-            "transaction": {
+            "request": {
                 "method": "POST",
                 "url": "Practitioner"
             },
@@ -923,11 +1031,9 @@
         {
             "resource": {
                 "resourceType": "Practitioner",
-                "name": [
-                    {
-                        "text": "Jane Doe"
-                    }
-                ],
+                "name": {
+                    "text": "Jane Doe"
+                },
                 "address": [
                     {
                         "text": "123 Road, Anywhere, VA 00001"
@@ -946,7 +1052,7 @@
                     }
                 ]
             },
-            "transaction": {
+            "request": {
                 "method": "POST",
                 "url": "Practitioner"
             },
@@ -964,7 +1070,7 @@
                     }
                 ]
             },
-            "transaction": {
+            "request": {
                 "method": "POST",
                 "url": "HealthcareService"
             },
@@ -982,7 +1088,7 @@
                     }
                 ]
             },
-            "transaction": {
+            "request": {
                 "method": "POST",
                 "url": "HealthcareService"
             },
@@ -991,7 +1097,7 @@
         {
             "resource": {
                 "resourceType": "Organization",
-                "id": "Organization/13",
+                "id": "Organization/23",
                 "name": "A Medicare Plan Plus (HMO)",
                 "address": [
                     {
@@ -999,7 +1105,7 @@
                     }
                 ]
             },
-            "transaction": {
+            "request": {
                 "method": "POST",
                 "url": "Organization"
             },
@@ -1018,10 +1124,10 @@
                     "display": "Coordinated Care Plan (HMO, PPO, PSO, SNP)"
                 },
                 "issuer": {
-                    "reference": "Organization/13"
+                    "reference": "Organization/23"
                 }
             },
-            "transaction": {
+            "request": {
                 "method": "POST",
                 "url": "Coverage"
             },
@@ -1030,7 +1136,7 @@
         {
             "resource": {
                 "resourceType": "Organization",
-                "id": "Organization/14",
+                "id": "Organization/24",
                 "name": "A Medicare Rx Plan (PDP)",
                 "address": [
                     {
@@ -1038,7 +1144,7 @@
                     }
                 ]
             },
-            "transaction": {
+            "request": {
                 "method": "POST",
                 "url": "Organization"
             },
@@ -1057,10 +1163,10 @@
                     "display": "Medicare Prescription Drug Plan"
                 },
                 "issuer": {
-                    "reference": "Organization/14"
+                    "reference": "Organization/24"
                 }
             },
-            "transaction": {
+            "request": {
                 "method": "POST",
                 "url": "Coverage"
             },
@@ -1075,7 +1181,7 @@
                     "end": "2011-12-31"
                 }
             },
-            "transaction": {
+            "request": {
                 "method": "POST",
                 "url": "Coverage"
             },
@@ -1084,7 +1190,7 @@
         {
             "resource": {
                 "resourceType": "Organization",
-                "id": "Organization/15",
+                "id": "Organization/25",
                 "name": "Insurer1",
                 "address": [
                     {
@@ -1092,7 +1198,7 @@
                     }
                 ]
             },
-            "transaction": {
+            "request": {
                 "method": "POST",
                 "url": "Organization"
             },
@@ -1112,10 +1218,10 @@
                     "end": "2011-09-30"
                 },
                 "issuer": {
-                    "reference": "Organization/15"
+                    "reference": "Organization/25"
                 }
             },
-            "transaction": {
+            "request": {
                 "method": "POST",
                 "url": "Coverage"
             },
@@ -1124,7 +1230,7 @@
         {
             "resource": {
                 "resourceType": "Organization",
-                "id": "Organization/16",
+                "id": "Organization/26",
                 "name": "Insurer2",
                 "address": [
                     {
@@ -1132,7 +1238,7 @@
                     }
                 ]
             },
-            "transaction": {
+            "request": {
                 "method": "POST",
                 "url": "Organization"
             },
@@ -1152,10 +1258,10 @@
                     "end": "2010-12-31"
                 },
                 "issuer": {
-                    "reference": "Organization/16"
+                    "reference": "Organization/26"
                 }
             },
-            "transaction": {
+            "request": {
                 "method": "POST",
                 "url": "Coverage"
             },
@@ -1164,7 +1270,7 @@
         {
             "resource": {
                 "resourceType": "Organization",
-                "id": "Organization/17",
+                "id": "Organization/27",
                 "name": "Insurer",
                 "address": [
                     {
@@ -1172,7 +1278,7 @@
                     }
                 ]
             },
-            "transaction": {
+            "request": {
                 "method": "POST",
                 "url": "Organization"
             },
@@ -1189,10 +1295,10 @@
                     "end": "2008-11-30"
                 },
                 "issuer": {
-                    "reference": "Organization/17"
+                    "reference": "Organization/27"
                 }
             },
-            "transaction": {
+            "request": {
                 "method": "POST",
                 "url": "Coverage"
             },
@@ -1209,44 +1315,52 @@
                 "detail": [
                     {
                         "type": {
-                            "value": "charged"
+                            "code": "charged"
                         },
-                        "amount": "60.00",
-                        "code": "USD"
+                        "amount": {
+                            "value": 60,
+                            "code": "USD"
+                        }
                     },
                     {
                         "type": {
-                            "value": "approved"
+                            "code": "approved"
                         },
-                        "amount": "34.00",
-                        "code": "USD"
+                        "amount": {
+                            "value": 34,
+                            "code": "USD"
+                        }
                     },
                     {
                         "type": {
-                            "value": "providerPaid"
+                            "code": "providerPaid"
                         },
-                        "amount": "27.20",
-                        "code": "USD"
+                        "amount": {
+                            "value": 27.2,
+                            "code": "USD"
+                        }
                     },
                     {
                         "type": {
-                            "value": "youMayBeBilled"
+                            "code": "youMayBeBilled"
                         },
-                        "amount": "6.80",
-                        "code": "USD"
+                        "amount": {
+                            "value": 6.8,
+                            "code": "USD"
+                        }
                     }
                 ],
                 "organization": {
-                    "reference": "Organization/20"
+                    "reference": "Organization/30"
                 },
                 "requestProvider": {
-                    "reference": "Practitioner/19"
+                    "reference": "Practitioner/29"
                 },
                 "period": {
                     "start": "2012-10-18"
                 }
             },
-            "transaction": {
+            "request": {
                 "method": "POST",
                 "url": "PaymentReconciliation"
             },
@@ -1255,10 +1369,10 @@
         {
             "resource": {
                 "resourceType": "Organization",
-                "id": "Organization/18",
+                "id": "Organization/28",
                 "name": "MyMedicare.gov"
             },
-            "transaction": {
+            "request": {
                 "method": "POST",
                 "url": "Organization"
             },
@@ -1267,19 +1381,17 @@
         {
             "resource": {
                 "resourceType": "Practitioner",
-                "id": "Practitioner/19",
-                "name": [
-                    {
-                        "text": "No Information Available"
-                    }
-                ],
+                "id": "Practitioner/29",
+                "name": {
+                    "text": "No Information Available"
+                },
                 "address": [
                     {
                         "text": ""
                     }
                 ]
             },
-            "transaction": {
+            "request": {
                 "method": "POST",
                 "url": "Practitioner"
             },
@@ -1288,10 +1400,10 @@
         {
             "resource": {
                 "resourceType": "Organization",
-                "id": "Organization/20",
+                "id": "Organization/30",
                 "name": "PartB"
             },
-            "transaction": {
+            "request": {
                 "method": "POST",
                 "url": "Organization"
             },
@@ -1309,31 +1421,31 @@
                     {
                         "sequence": "1",
                         "diagnosis": {
-                            "value": "3534"
+                            "code": "3534"
                         }
                     },
                     {
                         "sequence": "2",
                         "diagnosis": {
-                            "value": "7393"
+                            "code": "7393"
                         }
                     },
                     {
                         "sequence": "3",
                         "diagnosis": {
-                            "value": "7392"
+                            "code": "7392"
                         }
                     },
                     {
                         "sequence": "4",
                         "diagnosis": {
-                            "value": "3533"
+                            "code": "3533"
                         }
                     }
                 ],
                 "item": []
             },
-            "transaction": {
+            "request": {
                 "method": "POST",
                 "url": "Claim"
             },
@@ -1353,7 +1465,7 @@
                     "end": "2012-10-18"
                 }
             },
-            "transaction": {
+            "request": {
                 "method": "POST",
                 "url": "PaymentReconciliation"
             },
@@ -1362,13 +1474,17 @@
         {
             "resource": {
                 "resourceType": "Location",
-                "id": "Location/21",
+                "id": "Location/31",
                 "physicalType": {
-                    "code": "11",
-                    "display": "Office"
+                    "coding": [
+                        {
+                            "code": "11",
+                            "display": "Office"
+                        }
+                    ]
                 }
             },
-            "transaction": {
+            "request": {
                 "method": "POST",
                 "url": "Location"
             },
@@ -1383,7 +1499,7 @@
                     }
                 ]
             },
-            "transaction": {
+            "request": {
                 "method": "POST",
                 "url": "Practitioner"
             },
@@ -1450,10 +1566,10 @@
                     }
                 ],
                 "facility": {
-                    "reference": "Location/21"
+                    "reference": "Location/31"
                 }
             },
-            "transaction": {
+            "request": {
                 "method": "POST",
                 "url": "Claim"
             },
@@ -1497,7 +1613,7 @@
                 ],
                 "request": {}
             },
-            "transaction": {
+            "request": {
                 "method": "POST",
                 "url": "ClaimResponse"
             },
@@ -1514,44 +1630,52 @@
                 "detail": [
                     {
                         "type": {
-                            "value": "charged"
+                            "code": "charged"
                         },
-                        "amount": "504.80",
-                        "code": "USD"
+                        "amount": {
+                            "value": 504.8,
+                            "code": "USD"
+                        }
                     },
                     {
                         "type": {
-                            "value": "approved"
+                            "code": "approved"
                         },
-                        "amount": "504.80",
-                        "code": "USD"
+                        "amount": {
+                            "value": 504.8,
+                            "code": "USD"
+                        }
                     },
                     {
                         "type": {
-                            "value": "providerPaid"
+                            "code": "providerPaid"
                         },
-                        "amount": "126.31",
-                        "code": "USD"
+                        "amount": {
+                            "value": 126.31,
+                            "code": "USD"
+                        }
                     },
                     {
                         "type": {
-                            "value": "youMayBeBilled"
+                            "code": "youMayBeBilled"
                         },
-                        "amount": "38.84",
-                        "code": "USD"
+                        "amount": {
+                            "value": 38.84,
+                            "code": "USD"
+                        }
                     }
                 ],
                 "requestProvider": {
-                    "reference": "Practitioner/22"
+                    "reference": "Practitioner/32"
                 },
                 "period": {
                     "start": "2012-09-22"
                 },
                 "organization": {
-                    "reference": "Organization/23"
+                    "reference": "Organization/33"
                 }
             },
-            "transaction": {
+            "request": {
                 "method": "POST",
                 "url": "PaymentReconciliation"
             },
@@ -1560,19 +1684,17 @@
         {
             "resource": {
                 "resourceType": "Practitioner",
-                "id": "Practitioner/22",
-                "name": [
-                    {
-                        "text": "No Information Available"
-                    }
-                ],
+                "id": "Practitioner/32",
+                "name": {
+                    "text": "No Information Available"
+                },
                 "address": [
                     {
                         "text": ""
                     }
                 ]
             },
-            "transaction": {
+            "request": {
                 "method": "POST",
                 "url": "Practitioner"
             },
@@ -1581,10 +1703,10 @@
         {
             "resource": {
                 "resourceType": "Organization",
-                "id": "Organization/23",
+                "id": "Organization/33",
                 "name": "Outpatient"
             },
-            "transaction": {
+            "request": {
                 "method": "POST",
                 "url": "Organization"
             },
@@ -1602,25 +1724,25 @@
                     {
                         "sequence": "1",
                         "diagnosis": {
-                            "value": "56400"
+                            "code": "56400"
                         }
                     },
                     {
                         "sequence": "2",
                         "diagnosis": {
-                            "value": "7245"
+                            "code": "7245"
                         }
                     },
                     {
                         "sequence": "3",
                         "diagnosis": {
-                            "value": "V1588"
+                            "code": "V1588"
                         }
                     }
                 ],
                 "item": []
             },
-            "transaction": {
+            "request": {
                 "method": "POST",
                 "url": "Claim"
             },
@@ -1639,7 +1761,7 @@
                     "start": "2012-09-22"
                 }
             },
-            "transaction": {
+            "request": {
                 "method": "POST",
                 "url": "PaymentReconciliation"
             },
@@ -1700,7 +1822,7 @@
                     }
                 ]
             },
-            "transaction": {
+            "request": {
                 "method": "POST",
                 "url": "Claim"
             },
@@ -1744,7 +1866,7 @@
                 ],
                 "request": {}
             },
-            "transaction": {
+            "request": {
                 "method": "POST",
                 "url": "ClaimResponse"
             },
@@ -1763,7 +1885,7 @@
                     "start": "2012-09-22"
                 }
             },
-            "transaction": {
+            "request": {
                 "method": "POST",
                 "url": "PaymentReconciliation"
             },
@@ -1825,7 +1947,7 @@
                     }
                 ]
             },
-            "transaction": {
+            "request": {
                 "method": "POST",
                 "url": "Claim"
             },
@@ -1869,7 +1991,7 @@
                 ],
                 "request": {}
             },
-            "transaction": {
+            "request": {
                 "method": "POST",
                 "url": "ClaimResponse"
             },
@@ -1888,7 +2010,7 @@
                     "start": "2012-09-22"
                 }
             },
-            "transaction": {
+            "request": {
                 "method": "POST",
                 "url": "PaymentReconciliation"
             },
@@ -1951,7 +2073,7 @@
                     }
                 ]
             },
-            "transaction": {
+            "request": {
                 "method": "POST",
                 "url": "Claim"
             },
@@ -1995,7 +2117,7 @@
                 ],
                 "request": {}
             },
-            "transaction": {
+            "request": {
                 "method": "POST",
                 "url": "ClaimResponse"
             },
@@ -2011,16 +2133,16 @@
                 ],
                 "detail": [],
                 "requestProvider": {
-                    "reference": "Practitioner/24"
+                    "reference": "Practitioner/34"
                 },
                 "period": {
                     "start": "2012-12-01"
                 },
                 "organization": {
-                    "reference": "Organization/25"
+                    "reference": "Organization/35"
                 }
             },
-            "transaction": {
+            "request": {
                 "method": "POST",
                 "url": "PaymentReconciliation"
             },
@@ -2029,19 +2151,17 @@
         {
             "resource": {
                 "resourceType": "Practitioner",
-                "id": "Practitioner/24",
-                "name": [
-                    {
-                        "text": "No Information Available"
-                    }
-                ],
+                "id": "Practitioner/34",
+                "name": {
+                    "text": "No Information Available"
+                },
                 "address": [
                     {
                         "text": ""
                     }
                 ]
             },
-            "transaction": {
+            "request": {
                 "method": "POST",
                 "url": "Practitioner"
             },
@@ -2050,10 +2170,10 @@
         {
             "resource": {
                 "resourceType": "Organization",
-                "id": "Organization/25",
+                "id": "Organization/35",
                 "name": "PartB"
             },
-            "transaction": {
+            "request": {
                 "method": "POST",
                 "url": "Organization"
             },
@@ -2077,25 +2197,25 @@
                     {
                         "sequence": "2",
                         "diagnosis": {
-                            "value": "7392"
+                            "code": "7392"
                         }
                     },
                     {
                         "sequence": "3",
                         "diagnosis": {
-                            "value": "7241"
+                            "code": "7241"
                         }
                     },
                     {
                         "sequence": "4",
                         "diagnosis": {
-                            "value": "7393"
+                            "code": "7393"
                         }
                     },
                     {
                         "sequence": "5",
                         "diagnosis": {
-                            "value": "7391"
+                            "code": "7391"
                         }
                     }
                 ],
@@ -2138,7 +2258,7 @@
                     }
                 ]
             },
-            "transaction": {
+            "request": {
                 "method": "POST",
                 "url": "Claim"
             },
@@ -2182,7 +2302,7 @@
                 ],
                 "request": {}
             },
-            "transaction": {
+            "request": {
                 "method": "POST",
                 "url": "ClaimResponse"
             },
@@ -2202,7 +2322,7 @@
                     "end": "2012-12-01"
                 }
             },
-            "transaction": {
+            "request": {
                 "method": "POST",
                 "url": "PaymentReconciliation"
             },
@@ -2211,13 +2331,17 @@
         {
             "resource": {
                 "resourceType": "Location",
-                "id": "Location/26",
+                "id": "Location/36",
                 "physicalType": {
-                    "code": "11",
-                    "display": "Office"
+                    "coding": [
+                        {
+                            "code": "11",
+                            "display": "Office"
+                        }
+                    ]
                 }
             },
-            "transaction": {
+            "request": {
                 "method": "POST",
                 "url": "Location"
             },
@@ -2232,7 +2356,7 @@
                     }
                 ]
             },
-            "transaction": {
+            "request": {
                 "method": "POST",
                 "url": "Practitioner"
             },
@@ -2299,10 +2423,10 @@
                     }
                 ],
                 "facility": {
-                    "reference": "Location/26"
+                    "reference": "Location/36"
                 }
             },
-            "transaction": {
+            "request": {
                 "method": "POST",
                 "url": "Claim"
             },
@@ -2322,7 +2446,7 @@
                     "end": "2012-12-01"
                 }
             },
-            "transaction": {
+            "request": {
                 "method": "POST",
                 "url": "PaymentReconciliation"
             },
@@ -2331,13 +2455,17 @@
         {
             "resource": {
                 "resourceType": "Location",
-                "id": "Location/27",
+                "id": "Location/37",
                 "physicalType": {
-                    "code": "11",
-                    "display": "Office"
+                    "coding": [
+                        {
+                            "code": "11",
+                            "display": "Office"
+                        }
+                    ]
                 }
             },
-            "transaction": {
+            "request": {
                 "method": "POST",
                 "url": "Location"
             },
@@ -2352,7 +2480,7 @@
                     }
                 ]
             },
-            "transaction": {
+            "request": {
                 "method": "POST",
                 "url": "Practitioner"
             },
@@ -2419,10 +2547,10 @@
                     }
                 ],
                 "facility": {
-                    "reference": "Location/27"
+                    "reference": "Location/37"
                 }
             },
-            "transaction": {
+            "request": {
                 "method": "POST",
                 "url": "Claim"
             },
@@ -2438,16 +2566,16 @@
                 ],
                 "detail": [],
                 "organization": {
-                    "reference": "Organization/28"
+                    "reference": "Organization/38"
                 },
                 "period": {
                     "start": "2011-11-17"
                 },
                 "requestProvider": {
-                    "reference": "Practitioner/29"
+                    "reference": "Practitioner/39"
                 }
             },
-            "transaction": {
+            "request": {
                 "method": "POST",
                 "url": "PaymentReconciliation"
             },
@@ -2456,10 +2584,10 @@
         {
             "resource": {
                 "resourceType": "Organization",
-                "id": "Organization/28",
+                "id": "Organization/38",
                 "name": "Part D"
             },
-            "transaction": {
+            "request": {
                 "method": "POST",
                 "url": "Organization"
             },
@@ -2468,19 +2596,17 @@
         {
             "resource": {
                 "resourceType": "Practitioner",
-                "id": "Practitioner/29",
-                "name": [
-                    {
-                        "text": "PHARMACY2 #00000"
-                    }
-                ],
+                "id": "Practitioner/39",
+                "name": {
+                    "text": "PHARMACY2 #00000"
+                },
                 "address": [
                     {
                         "text": "PHARMACY2 #00000"
                     }
                 ]
             },
-            "transaction": {
+            "request": {
                 "method": "POST",
                 "url": "Practitioner"
             },
@@ -2489,7 +2615,7 @@
         {
             "resource": {
                 "resourceType": "Medication",
-                "id": "Medication/30",
+                "id": "Medication/40",
                 "code": {
                     "text": "CARVEDILOL",
                     "coding": [
@@ -2500,7 +2626,7 @@
                     ]
                 }
             },
-            "transaction": {
+            "request": {
                 "method": "POST",
                 "url": "Medication"
             },
@@ -2509,8 +2635,8 @@
         {
             "resource": {
                 "resourceType": "MedicationDispense",
-                "medication": {
-                    "reference": "Medication/30"
+                "medicationReference": {
+                    "reference": "Medication/40"
                 },
                 "type": {
                     "coding": [
@@ -2525,10 +2651,10 @@
                     "value": "30"
                 },
                 "dispenser": {
-                    "reference": "Practitioner/31"
+                    "reference": "Practitioner/41"
                 }
             },
-            "transaction": {
+            "request": {
                 "method": "POST",
                 "url": "MedicationDispense"
             },
@@ -2537,21 +2663,17 @@
         {
             "resource": {
                 "resourceType": "Practitioner",
-                "id": "Practitioner/31",
+                "id": "Practitioner/41",
                 "identifier": [
-                    [
-                        {
-                            "value": "123456789"
-                        }
-                    ]
-                ],
-                "name": [
                     {
-                        "text": "Jane Doe"
+                        "value": "123456789"
                     }
-                ]
+                ],
+                "name": {
+                    "text": "Jane Doe"
+                }
             },
-            "transaction": {
+            "request": {
                 "method": "POST",
                 "url": "Practitioner"
             },
@@ -2567,16 +2689,16 @@
                 ],
                 "detail": [],
                 "organization": {
-                    "reference": "Organization/32"
+                    "reference": "Organization/42"
                 },
                 "period": {
                     "start": "2011-11-23"
                 },
                 "requestProvider": {
-                    "reference": "Practitioner/33"
+                    "reference": "Practitioner/43"
                 }
             },
-            "transaction": {
+            "request": {
                 "method": "POST",
                 "url": "PaymentReconciliation"
             },
@@ -2585,10 +2707,10 @@
         {
             "resource": {
                 "resourceType": "Organization",
-                "id": "Organization/32",
+                "id": "Organization/42",
                 "name": "Part D"
             },
-            "transaction": {
+            "request": {
                 "method": "POST",
                 "url": "Organization"
             },
@@ -2597,19 +2719,17 @@
         {
             "resource": {
                 "resourceType": "Practitioner",
-                "id": "Practitioner/33",
-                "name": [
-                    {
-                        "text": "PHARMACY3 #00000"
-                    }
-                ],
+                "id": "Practitioner/43",
+                "name": {
+                    "text": "PHARMACY3 #00000"
+                },
                 "address": [
                     {
                         "text": "PHARMACY3 #00000"
                     }
                 ]
             },
-            "transaction": {
+            "request": {
                 "method": "POST",
                 "url": "Practitioner"
             },
@@ -2618,7 +2738,7 @@
         {
             "resource": {
                 "resourceType": "Medication",
-                "id": "Medication/34",
+                "id": "Medication/44",
                 "code": {
                     "text": "OMEPRAZOLE",
                     "coding": [
@@ -2629,7 +2749,7 @@
                     ]
                 }
             },
-            "transaction": {
+            "request": {
                 "method": "POST",
                 "url": "Medication"
             },
@@ -2638,8 +2758,8 @@
         {
             "resource": {
                 "resourceType": "MedicationDispense",
-                "medication": {
-                    "reference": "Medication/34"
+                "medicationReference": {
+                    "reference": "Medication/44"
                 },
                 "type": {
                     "coding": [
@@ -2654,10 +2774,10 @@
                     "value": "30"
                 },
                 "dispenser": {
-                    "reference": "Practitioner/35"
+                    "reference": "Practitioner/45"
                 }
             },
-            "transaction": {
+            "request": {
                 "method": "POST",
                 "url": "MedicationDispense"
             },
@@ -2666,21 +2786,17 @@
         {
             "resource": {
                 "resourceType": "Practitioner",
-                "id": "Practitioner/35",
+                "id": "Practitioner/45",
                 "identifier": [
-                    [
-                        {
-                            "value": "123456789"
-                        }
-                    ]
-                ],
-                "name": [
                     {
-                        "text": "Jane Doe"
+                        "value": "123456789"
                     }
-                ]
+                ],
+                "name": {
+                    "text": "Jane Doe"
+                }
             },
-            "transaction": {
+            "request": {
                 "method": "POST",
                 "url": "Practitioner"
             },
