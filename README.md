@@ -1,13 +1,17 @@
-cms-fhir
-=================
-
-[![Build Status](https://travis-ci.org/amida-tech/cms-fhir.svg)](https://travis-ci.org/amida-tech/cms-fhir) [![Coverage Status](https://coveralls.io/repos/amida-tech/cms-fhir/badge.svg?branch=master&service=github)](https://coveralls.io/github/amida-tech/cms-fhir?branch=master)
-
+# cms-fhir
 Blue Button CMS to FHIR Parser
 
 Generate FHIR JSON data from CMS files. 
 
-## Usage
+[![NPM](https://nodei.co/npm/cms-fhir.png)](https://nodei.co/npm/cms-fhir/)
+
+[![Build Status](https://travis-ci.org/amida-tech/cms-fhir.svg)](https://travis-ci.org/amida-tech/cms-fhir) [![Coverage Status](https://coveralls.io/repos/amida-tech/cms-fhir/badge.svg?branch=master&service=github)](https://coveralls.io/github/amida-tech/cms-fhir?branch=master) ![dependencies status](https://david-dm.org/amida-tech/cms-fhir.svg)
+
+This library provides the following functionality
+- Parse CMS document
+- Generate set of resources conformant to [FHIR DSTU2](http://www.hl7.org/fhir/index.html) 
+
+Usage example:
 
 ``` javascript
 var split = require('split');
