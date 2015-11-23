@@ -5,7 +5,7 @@ Generate FHIR JSON data from CMS files.
 
 [![NPM](https://nodei.co/npm/cms-fhir.png)](https://nodei.co/npm/cms-fhir/)
 
-[![Build Status](https://travis-ci.org/amida-tech/cms-fhir.svg)](https://travis-ci.org/amida-tech/cms-fhir) [![Coverage Status](https://coveralls.io/repos/amida-tech/cms-fhir/badge.svg?branch=master&service=github)](https://coveralls.io/github/amida-tech/cms-fhir?branch=master) ![dependencies status](https://david-dm.org/amida-tech/cms-fhir.svg)
+[![Build Status](https://travis-ci.org/amida-tech/cms-fhir.svg)](https://travis-ci.org/amida-tech/cms-fhir) [![Coverage Status](https://coveralls.io/repos/amida-tech/cms-fhir/badge.svg?branch=master&service=github)](https://coveralls.io/github/amida-tech/cms-fhir?branch=master) [![Dependency Status](https://david-dm.org/amida-tech/cms-fhir.svg)](https://david-dm.org/amida-tech/cms-fhir)
 
 This library provides the following functionality
 - Parse CMS document

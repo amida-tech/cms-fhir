@@ -27,7 +27,7 @@
   },
   "dependencies": {
     "split": "~1.0.0",
-    "lodash": "~3.7.0"
+    "lodash": "~3.10.0"
   },
   "devDependencies": {
     "chai": "~2.3.0",
