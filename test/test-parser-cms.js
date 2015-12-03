@@ -40,6 +40,9 @@ describe('CMS parser/converter test', function () {
                     done(new Error('Error expected'));
                 }
                 fs.writeFile(__dirname + '/fixtures/sample.json', JSON.stringify(data, null, '    '));
+                
+                var gold = fs.readFileSync(__dirname + '/fixtures/sample-gold.json', 'utf-8');
+                expect(JSON.parse(gold)).to.eql(data);
                 //console.log(JSON.stringify(data, null, '    '));
             })
             .on('finish', function () {
